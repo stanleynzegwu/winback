@@ -87,6 +87,9 @@ import { useGSAP } from "@gsap/react";
 import DynamicText from "./DynamicText";
 import { Canvas, useThree } from "@react-three/fiber";
 import { FadingImageDisplacement } from "./FadingImageDisplacement";
+import Navbar from "./Navbar";
+import AnimatedNumber from "./AnimatedNumber";
+import Headroom from "react-headroom";
 
 export default function Header() {
   const [hovered, setHover] = useState(false);
@@ -108,20 +111,23 @@ export default function Header() {
       .to(subText2, {
         opacity: 1,
         duration: 0.3,
-        delay: 2,
+        delay: 2.4,
         //   repeat: -1,
         ease: "linear",
       })
       .to(subText3, {
         opacity: 1,
         duration: 0.1,
-        delay: 2.1,
+        delay: 2.5,
         //   repeat: -1,
         ease: "linear",
       });
   });
   return (
     <div className="relative w-full min-h-screen bg-black overflow-clip">
+      <Headroom upTolerance={10} className="relative z-50 ">
+        <Navbar />
+      </Headroom>
       <div className="absolute w-full h-full flex flex-col items-center justify-center gap-6 text-white z-50">
         <div
           className="flex flex-col justify-center items-center gap-2"
@@ -133,11 +139,10 @@ export default function Header() {
           <span className="subText opacity-0 text-base font-semibold md:text-xl md:font-semibold">
             Right Now Over
           </span>
-          <p className="text-5xl font-black md:text-8xl md:font-black lg:text-9xl lg:font-black">
-            10.900.000
-          </p>
+          <AnimatedNumber />
           <span className="subText2 opacity-0  text-base font-semibold md:text-xl md:font-semibold">
-            Nigerians are out of School
+            Nigerian Children are out of{" "}
+            {/* <DynamicText words={["school", "water", "food"]} className="text-white" /> */}
           </span>
         </div>
         <span className="subText3 opacity-0 text-xs md:text-sm ">

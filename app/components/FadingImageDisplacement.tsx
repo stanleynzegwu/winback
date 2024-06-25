@@ -205,7 +205,7 @@ export const FadingImageDisplacement = ({ hovered }) => {
         });
         gsap.to(ref.current.uniforms.dispFactor, {
           value: 0,
-          duration: 0.8,
+          duration: 1,
           ease: "linear",
         });
       },
