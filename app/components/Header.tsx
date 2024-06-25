@@ -90,8 +90,11 @@ import { FadingImageDisplacement } from "./FadingImageDisplacement";
 import Navbar from "./Navbar";
 import AnimatedNumber from "./AnimatedNumber";
 import Headroom from "react-headroom";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../state/store";
 
 export default function Header() {
+  const hasIntroCompleted = useSelector((state: RootState) => state.glsl.hasIntroCompleted);
   const [hovered, setHover] = useState(false);
   gsap.registerPlugin(useGSAP);
 
@@ -125,14 +128,15 @@ export default function Header() {
   });
   return (
     <div className="relative w-full min-h-screen bg-black overflow-clip">
-      <Headroom upTolerance={10} className="relative z-50 ">
+      <Headroom className="relative z-50 ">
         <Navbar />
       </Headroom>
       <div className="absolute w-full h-full flex flex-col items-center justify-center gap-6 text-white z-50">
+        <div className="absolute hidden lg:block right-0 top-0  w-1/2 h-full bg-violet-900 blur-base -z-30" />
         <div
           className="flex flex-col justify-center items-center gap-2"
           onPointerOver={() => {
-            setHover(true);
+            hasIntroCompleted && setHover(true);
           }}
           onPointerOut={() => setHover(false)}
         >
@@ -146,7 +150,7 @@ export default function Header() {
           </span>
         </div>
         <span className="subText3 opacity-0 text-xs md:text-sm ">
-          we need YOU to win back our people.
+          we need YOU to <span className="font-medium uppercase">win-back</span> our people.
         </span>
       </div>
       <div className="opacify absolute left-1/2 top-1/2 transform -translate-y-1/2 -translate-x-1/2 opacity-50 z-10 h-full w-full">

@@ -178,21 +178,25 @@ import { extend, useFrame, useThree } from "@react-three/fiber";
 import gsap from "gsap";
 import { easing } from "maath";
 import { useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../state/store";
+import { updateIntroCompleted } from "../state/glsl/glslSlice";
 
 // @ts-ignore
 export const FadingImageDisplacement = ({ hovered }) => {
-  const [animationComplete, setAnimationComplete] = useState(false);
-  const ref = useRef<THREE.ShaderMaterial>(null!); // @ts-ignore
+  const hasIntroCompleted = useSelector((state: RootState) => state.glsl.hasIntroCompleted);
+  const dispatch = useDispatch<AppDispatch>();
+  const ref = useRef<THREE.ShaderMaterial>(null!);
   const [texture1, texture2, dispTexture] = useTexture([
     "/images/african-headshot1.png",
     "/images/happy-Child-headshot.png",
     "/images/african-headshot1.png",
   ]);
   const { viewport, size, camera } = useThree();
-  //   useFrame((_state, delta) => {
-  //     // @ts-ignore
-  //     easing.damp(ref.current, "dispFactor", hovered ? 1 : 0, 0.4, delta);
-  //   });
+  useFrame((_state, delta) => {
+    // @ts-ignore
+    hasIntroCompleted && easing.damp(ref.current, "dispFactor", hovered ? 1 : 0, 0.4, delta);
+  });
 
   useGSAP(() => {
     const opacify = document.getElementsByClassName("opacify");
@@ -208,6 +212,7 @@ export const FadingImageDisplacement = ({ hovered }) => {
           duration: 1,
           ease: "linear",
         });
+        dispatch(updateIntroCompleted());
       },
       yoyo: true,
     });
