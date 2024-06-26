@@ -19,7 +19,7 @@ function Navbar() {
           className="bg-cover object-cover transition-all duration-500 ease-in-out w-14 h-14 cursor-pointer"
         />
       </Link>
-      <HamburgerIcon setIsOpen={setIsOpen} />
+      <HamburgerIcon isOpen={isOpen} setIsOpen={setIsOpen} classname={"md:hidden"} />
       <ul className="hidden md:flex gap-14">
         {["home", "about", "FAQ", "contact us"].map((item, index) => (
           <li className="capitalize font-medium" key={index}>

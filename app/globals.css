@@ -54,3 +54,30 @@ body {
 .zoom {
   transition: transform 5s ease-in-out;
 }
+
+.hamburger-icon {
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.top,
+.middle,
+.bottom {
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.open.top {
+  transform: rotate(45deg);
+  /* transform: translateY(3px) rotate(45deg); */
+  transform-origin: left center;
+}
+
+.open.middle {
+  opacity: 0;
+}
+
+.open.bottom {
+  /* transform: translateY(-3px) rotate(-45deg); */
+  transform: rotate(-45deg);
+  transform-origin: left center;
+}
