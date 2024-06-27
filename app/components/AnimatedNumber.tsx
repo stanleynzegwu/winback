@@ -1,48 +1,3 @@
-// import React, { useEffect, useRef } from "react";
-// import gsap from "gsap";
-// import { useGSAP } from "@gsap/react";
-
-// function AnimatedNumber() {
-//   const numberRef = useRef<HTMLDivElement>(null);
-
-//   useGSAP(() => {
-//     const numberElement = numberRef.current!;
-//     const parts = numberElement.children;
-
-//     // Ensure the number parts start hidden or off-screen
-//     gsap.set(parts, { y: "100%", opacity: 0 });
-
-//     // Create GSAP timeline for the animation
-//     const timeline = gsap.timeline();
-
-//     timeline.to(parts, {
-//       y: "0%",
-//       opacity: 1,
-//       duration: 2,
-//       ease: "power3.out",
-//       stagger: 0.2, // Stagger the animation of each part
-//     });
-
-//     return () => {
-//       timeline.kill(); // Clean up timeline if component unmounts
-//     };
-//   }, []);
-
-//   return (
-//     <div
-//       ref={numberRef}
-//       className="text-5xl font-black md:text-8xl md:font-black lg:text-9xl lg:font-black"
-//     >
-//       <span>10</span>
-//       <span>.</span>
-//       <span>000</span>
-//       <span>.</span>
-//       <span>001</span>
-//     </div>
-//   );
-// }
-
-// export default AnimatedNumber;
 "use client";
 
 import React, { useRef } from "react";
@@ -101,14 +56,14 @@ function AnimatedNumber() {
           // scrollSpyDelay={500}
         />
       </span>
-      <span>.</span>
+      <span>,</span>
       <span>
         <CountUp start={0} end={179} duration={1.5} delay={2.6} />
       </span>
-      <span>.</span>
+      <span>,</span>
       <span>00</span>
       <span>
-        <CountUp start={0} end={1} duration={4} delay={4} />
+        <CountUp start={0} end={1} duration={1} delay={1} />
       </span>
     </div>
   );

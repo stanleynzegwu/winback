@@ -1,37 +1,35 @@
-// components/DynamicText.tsx
 import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 
 interface DynamicTextProps {
   words: string[];
-  className?: string;
+  interval: number;
+  classname: string;
 }
 
-const DynamicText: React.FC<DynamicTextProps> = ({ words, className }) => {
-  const [index, setIndex] = useState(0);
+const DynamicText = ({ words, interval, classname }: DynamicTextProps) => {
+  const [currentWordIndex, setCurrentWordIndex] = useState(0);
+  const [fade, setFade] = useState(true);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setIndex((prevIndex) => (prevIndex + 1) % words.length);
-    }, 2000); // Change text every 2 seconds
+    const intervalId = setInterval(() => {
+      setFade(false);
+      setTimeout(() => {
+        setCurrentWordIndex((prevIndex) => (prevIndex + 1) % words.length);
+        setFade(true);
+      }, 500); // Duration of the fade-out effect
+    }, interval);
 
-    return () => clearInterval(interval);
-  }, [words.length]);
+    return () => clearInterval(intervalId);
+  }, [words, interval]);
 
   return (
-    <AnimatePresence>
-      <motion.span
-        key={index}
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: -10 }}
-        transition={{ duration: 0.5, ease: "linear" }}
-        className={`${className}`}
-        style={{ display: "inline-block" }}
-      >
-        {words[index]}
-      </motion.span>
-    </AnimatePresence>
+    <span
+      className={`${classname} transition-opacity duration-700 ease-in-out transform ${
+        fade ? "opacity-100 scale-100" : "opacity-0 scale-95"
+      }`}
+    >
+      {words[currentWordIndex]}
+    </span>
   );
 };
 

@@ -13,6 +13,23 @@ const config: Config = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      colors: {
+        primaryColor: {
+          light: '#d1fae5', // Light shade (optional)
+          DEFAULT: '#10b981', // Default shade (e.g., green for 60%)
+          dark: '#065f46', // Dark shade (optional)
+        },
+        secondaryColor: {
+          light: '#bfdbfe', // Light shade (optional)
+          DEFAULT: '#3b82f6', // Default shade (e.g., blue for 30%)
+          dark: '#1e3a8a', // Dark shade (optional)
+        },
+        accentColor: {
+          light: '#fca5a5', // Light shade (optional)
+          DEFAULT: '#ef4444', // Default shade (e.g., red for 10%)
+          dark: '#b91c1c', // Dark shade (optional)
+        },
+      },
       blur: {
         "4xl": "70px",
         "5xl": "85px",
