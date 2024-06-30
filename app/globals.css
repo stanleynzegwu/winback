@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 /* 
 :root {
   --foreground-rgb: 0, 0, 0;
@@ -33,7 +34,61 @@ body {
   }
 } */
 
+@layer base {
+  * {
+    /* @apply border-border; */
+  }
+  body {
+    /* @apply bg-background text-foreground; */
+  }
+  h1 {
+    @apply leading-none text-5xl md:text-[56px] lg:text-[90px] xl:text-[104px] tracking-tight scroll-m-20 font-bold;
+  }
+  h2 {
+    @apply pb-2 leading-tight text-3xl md:text-[32px] lg:text-[44px] xl:text-5xl font-semibold tracking-tight scroll-m-20 first:mt-0;
+  }
+  h3 {
+    @apply leading-[1.3] 2xl:leading-[1.3] text-2xl lg:text-[32px] xl:text-4xl font-medium tracking-tight scroll-m-20;
+  }
+  h4 {
+    @apply leading-tight 2xl:leading-normal text-xl lg:text-[28px] xl:text-[32px] font-medium tracking-normal scroll-m-20;
+  }
+  h5 {
+    @apply text-lg lg:text-2xl leading-normal 2xl:leading-tight font-medium tracking-normal scroll-m-20;
+  }
+  h6 {
+    @apply text-base lg:text-lg leading-relaxed tracking-wide  font-medium;
+  }
+  p,
+  code,
+  button {
+    @apply text-xs font-normal lg:text-sm md:text-[13px] leading-relaxed tracking-wide;
+  }
 
+  a {
+    @apply text-[15px] lg:text-base  font-normal   leading-[120%]  tracking-normal;
+  }
+
+  /* code {
+    @apply font-mono leading-loose;
+  }
+  small {
+    @apply leading-relaxed text-[10px] md:text-[11px] lg:text-xs;
+  }
+
+  small {
+    @apply tracking-wide text-[10px] md:text-[11px] lg:text-xs;
+  }
+  .text-pb {
+    @apply text-[13px] lg:text-sm leading-[120%] -tracking-normal font-medium;
+  }
+  .text-pm {
+    @apply text-[11px] lg:text-xs leading-[120%] -tracking-normal font-medium;
+  }
+  .text-ps {
+    @apply text-[9px] lg:text-[10px] leading-[120%] -tracking-normal font-normal;
+  } */
+}
 
 @layer utilities {
   .text-balance {
@@ -80,4 +135,17 @@ body {
   /* transform: translateY(-3px) rotate(-45deg); */
   transform: rotate(-45deg);
   transform-origin: left center;
+}
+
+.glassmorphism {
+  background: rgba(255, 255, 255, 0.2);
+  /* box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2); */
+  backdrop-filter: blur(10px);
+}
+
+.item {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s, transform 0.5s;
 }

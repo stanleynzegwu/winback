@@ -44,7 +44,7 @@ export default function Header() {
         //   repeat: -1,
         ease: "linear",
       });
-  });
+  }, []);
   return (
     <div className="relative w-full min-h-screen bg-black overflow-clip">
       <Headroom className="relative z-50 ">
@@ -75,6 +75,7 @@ export default function Header() {
         <span className="subText3 opacity-0 text-xs md:text-sm ">
           Help<span className="font-medium uppercase"> WinBack</span> Their Future.
         </span>
+        <button className="w-28 rounded-xl bg-accentColor-light text-black p-2">Donate</button>
       </div>
       <div className="opacify absolute left-1/2 top-1/2 transform -translate-y-1/2 -translate-x-1/2 opacity-50 z-10 h-full w-full">
         <Canvas shadows camera={{ position: [0, 0, 8], fov: 42 }}>
