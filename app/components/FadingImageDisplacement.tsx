@@ -1,3 +1,5 @@
+"use client";
+
 import { useGSAP } from "@gsap/react";
 import * as THREE from "three";
 import { Plane, shaderMaterial, useTexture } from "@react-three/drei";
@@ -10,7 +12,7 @@ import { AppDispatch, RootState } from "../state/store";
 import { updateIntroCompleted } from "../state/glsl/glslSlice";
 
 // @ts-ignore
-export const FadingImageDisplacement = ({ hovered }) => {
+export default function FadingImageDisplacement({ hovered = false }) {
   const hasIntroCompleted = useSelector((state: RootState) => state.glsl.hasIntroCompleted);
   const dispatch = useDispatch<AppDispatch>();
   const ref = useRef<THREE.ShaderMaterial>(null!);
@@ -124,6 +126,6 @@ export const FadingImageDisplacement = ({ hovered }) => {
       <imageFadeMaterialDisplacement ref={ref} />
     </Plane>
   );
-};
+}
 
 // #include <encodings_fragment>
