@@ -47,7 +47,7 @@ export default function Section3() {
     //   </div>
     // </section>
 
-    <div className="section3 relative w-full min-h-[200vh] bg-red-400">
+    <div className="section3 relative w-full min-h-[200vh] bg-red-300">
       {/* Parent container with double viewport height */}
       <section className=" sticky top-0 h-screen w-full flex flex-col items-center justify-center gap-5">
         <div className="w-full h-screen ">

@@ -11,7 +11,7 @@ import {
 } from "@react-three/drei";
 import { useControls } from "leva";
 import { useRef } from "react";
-import { AnimationAction, Mesh, MeshPhysicalMaterial } from "three";
+import { AnimationAction, Mesh, MeshBasicMaterial, MeshPhysicalMaterial } from "three";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { calculateResponsiveScale } from "@/lib/utils";
@@ -19,23 +19,52 @@ const glassBreakAudio = new Audio("/audio/breaking-glass.mp3");
 glassBreakAudio.volume = 0.5;
 
 const GlassCanvas = () => {
+  // const materialProps = useControls({
+  //   thickness: { value: 0.2, min: 0, max: 3, step: 0.05 },
+
+  //   roughness: { value: 0, min: 0, max: 1, step: 0.1 },
+
+  //   transmission: { value: 1, min: 0, max: 1, step: 0.1 },
+
+  //   ior: { value: 1.2, min: 0, max: 3, step: 0.1 },
+
+  //   chromaticAberration: { value: 0.02, min: 0, max: 1 },
+
+  //   backside: { value: true },
+  // });
+
   const { scene, animations } = useGLTF("/models/glass.glb");
   const glassCover = scene.getObjectByName("Cube_A_Cover") as Mesh;
 
+  const basicMatrial = new MeshBasicMaterial({ color: "red" });
+  glassCover.material = basicMatrial;
   const { actions } = useAnimations(animations, scene);
   const torusRef = useRef<Mesh>(null);
   let time = { value: 0 };
 
+  // const material = new MeshPhysicalMaterial({
+  //   thickness: 0.2,
+  //   roughness: 0,
+  //   transmission: 1,
+  //   ior: 1.2,
+  //   clearcoat: 1,
+  //   clearcoatRoughness: 0,
+  //   reflectivity: 0.5,
+  //   color: 0x000000,
+  // });
   const material = new MeshPhysicalMaterial({
     thickness: 0.2,
     roughness: 0,
-    transmission: 1,
+    transmission: 1, // Allows light to pass through the material
     ior: 1.2,
     clearcoat: 1,
     clearcoatRoughness: 0,
     reflectivity: 0.5,
-    color: 0x000000,
+    color: 0x000000, // Base color, which will be mostly invisible due to the transparency
+    opacity: 0.25, // Lower opacity for transparency
+    transparent: true, // This must be true for transparency to work
   });
+
   scene.traverse((child) => {
     if (child instanceof Mesh) {
       child.material = material;
@@ -91,20 +120,6 @@ const GlassCanvas = () => {
         },
       });
   }, []);
-
-  // const materialProps = useControls({
-  //   thickness: { value: 0.2, min: 0, max: 3, step: 0.05 },
-
-  //   roughness: { value: 0, min: 0, max: 1, step: 0.1 },
-
-  //   transmission: { value: 1, min: 0, max: 1, step: 0.1 },
-
-  //   ior: { value: 1.2, min: 0, max: 3, step: 0.1 },
-
-  //   chromaticAberration: { value: 0.02, min: 0, max: 1 },
-
-  //   backside: { value: true },
-  // });
 
   return (
     // <group scale={[5.2, 2.85, 1]}>

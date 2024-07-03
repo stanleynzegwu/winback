@@ -52,11 +52,9 @@ function Navbar() {
             className="bg-cover object-cover transition-all duration-500 ease-in-out w-14 h-14 cursor-pointer"
           />
         </Link>
-        {/* <div className="play-sound"> */}
         <HamburgerIcon isopen={isopen} setisopen={setisopen} classname={"play-sound md:hidden"} />
-        {/* </div> */}
         <ul className="hidden md:flex gap-14">
-          {["home", "about", "FAQ", "contact", "dashboard"].map((item, index) => (
+          {["about", "FAQ", "contact", "dashboard"].map((item, index) => (
             <li
               className={`capitalize font-medium hover:text-accentColor-light transition-all duration-500 ease-in-out ${
                 dashboardVisible(item, true) ? "visible" : "hidden"
@@ -76,9 +74,11 @@ function Navbar() {
           isopen ? "visible md:hidden" : "hidden"
         }`}
       >
-        {["home", "about", "FAQ", "contact"].map((item, index) => (
+        {["about", "FAQ", "contact", "dashboard"].map((item, index) => (
           <li
-            className="inline-block capitalize font-medium hover:text-accentColor-light transition-all duration-500 ease-in-out"
+            className={`inline-block capitalize font-medium hover:text-accentColor-light transition-all duration-500 ease-in-out ${
+              dashboardVisible(item, true) ? "visible" : "hidden"
+            }`}
             key={index}
           >
             <Link href={`/${item}`} className="play-sound">

@@ -1,3 +1,3 @@
-export default function Home() {
-  return <div>About</div>;
+export default function About() {
+  return <div className="h-[200vh]">About</div>;
 }
