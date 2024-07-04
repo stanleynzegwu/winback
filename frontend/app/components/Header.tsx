@@ -47,9 +47,7 @@ export default function Header() {
   }, []);
   return (
     <div className="relative w-full min-h-screen bg-black overflow-clip">
-      <Headroom className="relative z-50 ">
-        <Navbar />
-      </Headroom>
+      <Navbar />
       <div className="absolute w-full h-full flex flex-col items-center justify-center gap-6 text-white z-20">
         <div className="absolute hidden lg:block right-0 top-0  w-1/2 h-full bg-violet-900 blur-base -z-30" />
         <div

@@ -1,6 +1,6 @@
 export default function Dashboard() {
   return (
-    <div className="bg-red-300 h-screen ">
+    <div className="bg-gray-500 h-screen rounded-xl">
       dashboard home
       <p>
         Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatem consectetur corrupti
