@@ -149,3 +149,25 @@ body {
   transform: translateY(20px);
   transition: opacity 0.5s, transform 0.5s;
 }
+
+
+.tooltip {
+  position: relative;
+}
+
+.tooltip::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 100%; /* Position it to the left of the tooltip */
+  margin-top: -8px; /* Center it vertically */
+  border-width: 8px; /* Create the arrow */
+  border-style: solid;
+  border-color: transparent gray transparent transparent; /* Color the arrow */
+}
+
+.animation-layer {
+ 
+  opacity: 1;
+  transition: opacity 0.3s, opacity 0.7s 0.3s;
+}

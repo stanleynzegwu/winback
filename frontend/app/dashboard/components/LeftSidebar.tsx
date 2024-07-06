@@ -15,36 +15,40 @@ const data = [
 const LeftSidebar = () => {
   const [isExpanded, setExpanded] = useState(true);
   return (
-    <div
-      className={`relative hidden items-center md:block transition-all delay-150 duration-500 hover:cursor-pointer bg-orange-300 ${
+    <aside
+      className={`relative hidden items-center md:block transition-all delay-150 duration-500 bg-orange-300  ${
         isExpanded ? "w-80" : "w-20"
       }`}
     >
-      <div className={`w-full h-full flex flex-col p-4 bg-gray-300 `}>
+      <div className={`w-full h-full flex flex-col items-center p-4 bg-gray-300 `}>
         {/* Logo */}
-        <Link href="/">
+        <Link href="/" className="w-fit flex justify-center">
           <div className={`flex justify-center items-center `}>
             <Image
-              src="/images/winback-logo.png"
+              src={isExpanded ? "/images/winback-group.png" : "/images/winback-single.png"}
               alt="blur"
               width={500}
               height={500}
-              className={`w-12 h-12 `}
+              className={`${isExpanded ? "w-40 h-auto" : "w-12 h-auto"} object cover `}
             />
-            <span
-              className={`uppercase font-bold text-xl bg-gradient-to-r from-red-500  to-purple-600 inline-block text-transparent bg-clip-text transition-all duration-500 ${
-                isExpanded ? "opacity-1 delay-200" : "opacity-0 delay-100"
-              }`}
-            >
-              winback
-            </span>
           </div>
         </Link>
 
         <span
-          className={`block absolute top-[20%] right-0 text-white capitalize p-1 pl-4 bg-purple-600  text-lg w-60 rounded-l-lg`}
+          className={`absolute top-[20%] right-0 text-white capitalize p-1 pl-4 group bg-purple-600 text-lg rounded-l-lg flex items-center z-50 ${
+            isExpanded ? "w-52 h-10" : "w-14 h-12"
+          }`}
         >
-          dashboard
+          {isExpanded && "dashboard"}
+          <Image
+            src={"/images/users-icon.png"}
+            alt="blur"
+            width={500}
+            height={500}
+            className={`font-medium w-6 h-6 transition-transform duration-500 group-hover:scale-125 ${
+              isExpanded ? "hidden" : "visible"
+            }`}
+          />
         </span>
         <div className="relative  h-full flex flex-col items-center justify-center">
           <span className={`mr-20 text-lg font-medium ${isExpanded ? "visible" : "hidden"}`}>
@@ -56,14 +60,16 @@ const LeftSidebar = () => {
             }`}
           >
             {data.map(({ iconPath, name, navigationPath }, index) => (
-              <Link href={`/dashboard/${navigationPath}`}>
-                <div className={`flex gap-2 ${isExpanded ? "" : "w-6"}`} key={index}>
+              <Link href={`/dashboard/${navigationPath}`} key={index}>
+                <div className={`relative group flex gap-2 ${isExpanded ? "" : "w-6"}`}>
                   <Image
                     src={iconPath}
                     alt="blur"
                     width={500}
                     height={500}
-                    className="font-medium w-6 h-6"
+                    className={`font-medium w-6 h-6 transition-transfrom duration-500 ${
+                      isExpanded ? "" : "hover:scale-125"
+                    }`}
                   />
                   <span
                     className={`font-medium capitalize transition-opacity ease-in-out ${
@@ -74,6 +80,14 @@ const LeftSidebar = () => {
                   >
                     {name}
                   </span>
+                  {/* Tooltip */}
+                  <div
+                    className={`w-28 text-white opacity-0 absolute top-1/2 -translate-y-1/2 left-[175%] bg-gray-500 rounded-sm group-hover:opacity-100 transition-opacity group-hover:delay-700 duration-300 z-20 ${
+                      isExpanded ? "hidden" : "visible"
+                    }`}
+                  >
+                    <div className="tooltip w-full h-full rounded-md p-2">{name}</div>
+                  </div>
                 </div>
               </Link>
             ))}
@@ -85,7 +99,7 @@ const LeftSidebar = () => {
         className="absolute top-14 -right-8 w-12 h-8 rounded-lg z-50 bg-black"
         onClick={() => setExpanded((state) => !state)}
       />
-    </div>
+    </aside>
   );
 };
 

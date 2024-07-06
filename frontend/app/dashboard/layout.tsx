@@ -1,4 +1,5 @@
 import LeftSidebar from "./components/LeftSidebar";
+import Topbar from "./components/Topbar";
 
 export default function RootLayout({
   children,
@@ -17,6 +18,7 @@ export default function RootLayout({
 
     <div className="flex flex-col min-h-screen md:flex-row bg-red-300">
       {/* Leftsidebar */}
+      <Topbar />
       <LeftSidebar />
       {/* rightSidebar */}
       <div className="w-full max-h-screen min-h-screen overflow-x-hidden overflow-y-auto relative p-4 ">
