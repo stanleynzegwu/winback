@@ -27,7 +27,7 @@ export default function Section2() {
 
   return (
     <section className="aboutSection min-h-screen p-2 lg:p-10 lg:px-16 w-full flex flex-col items-center justify-center gap-5">
-      <div className="w-full flex flex-col lg:flex-row ">
+      <div className="w-full flex flex-col lg:flex-row gap-4">
         <div className="w-full lg:w-1/2">
           <div className="pl-5 pr-2 pb-5">
             <h3 className="pb-2">Some services we provide</h3>
@@ -46,7 +46,7 @@ export default function Section2() {
                     alt=""
                     width={100}
                     height={100}
-                    className="p-1 w-8 h-6 bg-black rounded-md"
+                    className={`p-1 w-8 h-6 bg-black rounded-md`}
                   />
                   {/* </div> */}
                   <div className="">
@@ -59,13 +59,13 @@ export default function Section2() {
           </div>
         </div>
 
-        <div className="w-full lg:w-1/2 h-auto">
+        <div className="w-full lg:w-1/2 h-auto bg-red-400">
           <Image
             src={"/images/rose.jpg"}
             alt=""
             width={100}
             height={100}
-            className="mx-auto w-auto h-full bg-cover rounded-lg aspect-[3/4]"
+            className={`max-lg:max-w-96 w-full mx-auto lg:w-auto h-full bg-cover rounded-lg aspect-[3/4]`}
           />
         </div>
       </div>

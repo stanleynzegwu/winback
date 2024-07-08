@@ -7,6 +7,7 @@ import { MouseEvent, useEffect, useState } from "react";
 import HamburgerIcon from "./svg/HamburgerIcon";
 import { playClickSound } from "@/lib/utils";
 import Headroom from "react-headroom";
+import SignInButton from "./SignInButton";
 
 function Navbar() {
   const [isopen, setisopen] = useState(false);
@@ -68,6 +69,7 @@ function Navbar() {
                 </Link>
               </li>
             ))}
+            <SignInButton />
           </ul>
         </div>
         {/* Mobile */}

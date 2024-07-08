@@ -1,8 +1,9 @@
-import { Body, Controller, Delete, Get, HttpException, Param, ParseIntPipe, Patch, Post, ValidationPipe } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpException, Param, ParseIntPipe, Patch, Post, UseGuards, ValidationPipe } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/CreateUser.dto';
 import mongoose from 'mongoose';
 import { UpdateUserDto } from './dto/UpdateUser.dto';
+import { JwtGuard } from 'src/auth/guards/jwt.guard';
 
 @Controller('users')
 export class UsersController {
@@ -13,6 +14,7 @@ export class UsersController {
     return this.usersService.getUsers()
   }
 
+  @UseGuards(JwtGuard)
   @Get(':id') //Get /users/:id
   async getUserById(@Param('id') id){  
     const user = await this.usersService.getUserById(id)

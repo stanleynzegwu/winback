@@ -55,12 +55,12 @@ const LeftSidebar = () => {
             Quick Menu
           </span>
           <div
-            className={` flex flex-col gap-3 p-2 py-4 ${
+            className={`flex flex-col gap-3 p-2 py-4 ${
               isExpanded ? "" : "rounded-full bg-teal-300"
             }`}
           >
             {data.map(({ iconPath, name, navigationPath }, index) => (
-              <Link href={`/dashboard/${navigationPath}`} key={index}>
+              <Link href={`/dashboard/${navigationPath}`} className="play-sound" key={index}>
                 <div className={`relative group flex gap-2 ${isExpanded ? "" : "w-6"}`}>
                   <Image
                     src={iconPath}

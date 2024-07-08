@@ -54,7 +54,7 @@ export default function Section3() {
           <Canvas>
             <GlassCanvas />
             <directionalLight intensity={10} position={[0, 2, 3]} />
-            <Environment preset="city" />
+            {/* <Environment preset="city" /> */}
           </Canvas>
         </div>
       </section>
