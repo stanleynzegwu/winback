@@ -13,8 +13,6 @@ import { updateIntroCompleted } from "../state/glsl/glslSlice";
 
 // @ts-ignore
 export default function FadingImageDisplacement({ hovered = false }) {
-  // const scene = useGLTF("/models/glass.glb");
-  // console.log(scene);
   const hasIntroCompleted = useSelector((state: RootState) => state.glsl.hasIntroCompleted);
   const dispatch = useDispatch<AppDispatch>();
   const ref = useRef<THREE.ShaderMaterial>(null!);
@@ -78,7 +76,7 @@ export default function FadingImageDisplacement({ hovered = false }) {
     return () => {
       timeline.kill(); // Clean up to prevent memory leaks if component unmounts
     };
-  });
+  }, []);
 
   const ImageFadeMaterialDisplacement = shaderMaterial(
     {

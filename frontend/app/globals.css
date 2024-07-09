@@ -40,6 +40,7 @@ body {
   }
   body {
     /* @apply bg-background text-foreground; */
+    @apply bg-background;
   }
   h1 {
     @apply leading-none text-5xl md:text-[56px] lg:text-[90px] xl:text-[104px] tracking-tight scroll-m-20 font-bold;

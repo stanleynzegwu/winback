@@ -8,8 +8,12 @@ import HamburgerIcon from "./svg/HamburgerIcon";
 import { playClickSound } from "@/lib/utils";
 import Headroom from "react-headroom";
 import SignInButton from "./SignInButton";
+import { useSession } from "next-auth/react";
 
 function Navbar() {
+  const { data: session } = useSession();
+  const isAdmin = session?.user.role === "admin";
+
   const [isopen, setisopen] = useState(false);
   const dashboardVisible = (item: string, isAdmin: boolean) => {
     if (item !== "dashboard") return true;
@@ -60,7 +64,7 @@ function Navbar() {
             {["about", "FAQ", "contact", "dashboard"].map((item, index) => (
               <li
                 className={`capitalize font-medium hover:text-accentColor-light transition-all duration-500 ease-in-out ${
-                  dashboardVisible(item, true) ? "visible" : "hidden"
+                  dashboardVisible(item, isAdmin) ? "visible" : "hidden"
                 }`}
                 key={index}
               >
@@ -81,7 +85,7 @@ function Navbar() {
           {["about", "FAQ", "contact", "dashboard"].map((item, index) => (
             <li
               className={`inline-block capitalize font-medium hover:text-accentColor-light transition-all duration-500 ease-in-out ${
-                dashboardVisible(item, true) ? "visible" : "hidden"
+                dashboardVisible(item, isAdmin) ? "visible" : "hidden"
               }`}
               key={index}
             >

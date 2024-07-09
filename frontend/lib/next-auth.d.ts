@@ -7,11 +7,33 @@ declare module "next-auth"{
             id: number;
             email: string;
             username: string;
+            role: 'admin' | 'editor' | 'volunteer' | 'member';
         };
 
         backendTokens: {
             accessToken: string;
             refreshToken: string;
+            expiresIn: number;
+        }
+    }
+}
+
+import { JWT } from "next-auth/jwt"
+
+declare module "next-auth/jwt"{
+
+    interface JWT {
+        user: {
+            id: number;
+            email: string;
+            username: string;
+            role: 'admin' | 'editor' | 'volunteer' | 'member';
+        };
+
+        backendTokens: {
+            accessToken: string;
+            refreshToken: string;
+            expiresIn: number;
         }
     }
 }
