@@ -1,3 +1,10 @@
+import { clsx, type ClassValue } from "clsx"
+import { twMerge } from "tailwind-merge"
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs))
+}
+
 export const calculateResponsiveScale = (axis: string) => {
   const currentAxis =
     axis === "x" ? [window.innerWidth, 1282, 5.2] : [window.innerHeight, 585, 2.85];
