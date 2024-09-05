@@ -30,7 +30,7 @@ const CoreValuesCarousel = () => {
               key={index}
               className="flex justify-center md:basis-1/2 lg:basis-1/3 2lg:basis-1/4"
             >
-              <div className="relative space-y-6 rounded-3xl bg-darkGrayishBlue bg-opacity-90 p-6 h-96 w-96 bg-red-300">
+              <div className="relative space-y-6 rounded-3xl bg-darkGrayishBlue bg-opacity-90 p-6 h-96 w-96 bg-[#000000]">
                 <Image
                   className="absolute top-0 left-0 w-16 h-16 2xl:w-20 2xl:h-20 -translate-y-1/2 translate-x-1/2 z-50"
                   src={`/images/icons/${iconPath}.png`}
@@ -38,7 +38,7 @@ const CoreValuesCarousel = () => {
                   width={50}
                   height={50}
                 />
-                <h5 className="text-lg pb-6">{name}</h5>
+                <h5 className="text-lg pb-6 text-white">{name}</h5>
                 <small className="text-gray-400">{about}</small>
               </div>
             </CarouselItem>

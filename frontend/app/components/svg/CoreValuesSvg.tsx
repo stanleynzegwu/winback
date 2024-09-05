@@ -1,9 +1,27 @@
 "use client";
 
+declare module "react" {
+  interface CSSProperties {
+    "--offset"?: string;
+  }
+}
+
 import gsap from "gsap";
+import { motion } from "framer-motion";
 import { useEffect, useRef } from "react";
 import { SVGProps } from "react";
 const CoreValuesSvg = (props: SVGProps<SVGSVGElement>) => {
+  const transition = {
+    duration: 35,
+    repeat: Infinity,
+    ease: "linear",
+  };
+  const SECONDLAYER_TRANSITION = {
+    duration: 40,
+    repeat: Infinity,
+    ease: "linear",
+  };
+
   return (
     <svg
       width={669}
@@ -14,16 +32,36 @@ const CoreValuesSvg = (props: SVGProps<SVGSVGElement>) => {
       xmlnsXlink="http://www.w3.org/1999/xlink"
       {...props}
     >
+      {/* <circle cx={334.5} cy={361.5} r={219} stroke="#454242" />
+        <circle cx={334.5} cy={361.5} r={317} stroke="#454242" /> */}
+      <path
+        d="M 651.5,361.5 A 317,317 0 1,1 17.5,361.5 A 317,317 0 1,1 651.5,361.5"
+        stroke="#454242"
+      />
+
+      <path
+        d="M 553.5,361.5 A 219,219 0 1,1 115.5,361.5 A 219,219 0 1,1 553.5,361.5"
+        stroke="#454242"
+      />
       <g clipPath="url(#clip0_1_3)">
-        <circle cx={334.5} cy={361.5} r={219} stroke="#454242" />
-        <circle cx={334.5} cy={361.5} r={317} stroke="#454242" />
-        <g filter="url(#filter0_d_1_3)">
+        <motion.g
+          filter="url(#filter0_d_1_3)"
+          // transform="translate(-40,-371)"
+          initial={{ "--offset": "0%", rotate: 0 }}
+          animate={{ "--offset": "-100%", rotate: 360 }}
+          transition={transition}
+          style={{
+            offsetDistance: "var(--offset)",
+            offsetRotate: "0deg",
+            offsetPath: `path('M288.045 32.49a75.91 75.91 0 0 1 75.91 0l212.842 122.885a75.91 75.91 0 0 1 37.955 65.74v245.77a75.91 75.91 0 0 1-37.955 65.74L363.955 655.509a75.91 75.91 0 0 1-75.91 0L75.202 532.625a75.91 75.91 0 0 1-37.954-65.74v-245.77a75.91 75.91 0 0 1 37.955-65.74z')`,
+          }}
+        >
           <path
             d="M590 388C590 371.431 576.569 358 560 358C543.431 358 530 371.431 530 388C530 404.569 543.431 418 560 418C576.569 418 590 404.569 590 388Z"
             fill="#282849"
           />
           <rect x={542} y={370} width={36} height={36} fill="url(#pattern0_1_3)" />
-        </g>
+        </motion.g>
         <g filter="url(#filter1_d_1_3)">
           <path
             d="M165 653C181.569 653 195 639.569 195 623C195 606.431 181.569 593 165 593C148.431 593 135 606.431 135 623C135 639.569 148.431 653 165 653Z"
