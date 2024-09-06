@@ -3,3 +3,5 @@ export { default as Section3 } from "../containers/Section3";
 export { default as Section4 } from "../containers/Section4";
 export { default as CoreValuesSection } from "../containers/CoreValuesSection";
 export { default as FAQ } from "../containers/FAQ";
+export { default as GallarySection } from "./GallarySection";
+// export { default as Test } from "../containers/Test";
