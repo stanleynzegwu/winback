@@ -75,8 +75,10 @@ function GallarySection() {
   }, []);
 
   return (
-    <div id="test-main" className="lg:h-[200vh] w-full bg-green-300">
-      <div className="lg:h-screen lg:sticky top-0 p-2 rounded bg-yellow-200 ">
+    // <div id="test-main" className="lg:h-[200vh] w-full bg-green-300">
+    //   <div className="lg:h-screen lg:sticky top-0 p-2 rounded bg-yellow-200">
+    <div id="test-main" className="lg:h-[200vh] w-full">
+      <div className="lg:h-screen lg:sticky top-0 p-2 rounded">
         <div
           id="parallax-container"
           className="rounded-3xl flex flex-col lg:flex-row h-full max-md:p-8 overflow-hidden bg-white"
@@ -114,7 +116,7 @@ function GallarySection() {
           {/* Animated scrolling Images */}
           <div
             id="images-container"
-            className="relative h-full flex flex-col lg:flex-row w-full lg:w-1/2"
+            className="relative h-full flex max-md:gap-2 flex-col lg:flex-row w-full lg:w-1/2"
           >
             {/* Container that scrolls upwards */}
             <div id="scroll-up" className="lg:absolute -top-full left-0 lg:h-full w-full lg:w-1/2">

@@ -10,7 +10,7 @@ import gsap from "gsap";
 import { motion } from "framer-motion";
 import { useEffect, useRef } from "react";
 import { SVGProps } from "react";
-const CoreValuesSvg = (props: SVGProps<SVGSVGElement>) => {
+const CoreValuesSvg = ({ className }: { className: string }) => {
   const transition = {
     duration: 35,
     repeat: Infinity,
@@ -30,7 +30,7 @@ const CoreValuesSvg = (props: SVGProps<SVGSVGElement>) => {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
-      {...props}
+      className={className}
     >
       {/* <circle cx={334.5} cy={361.5} r={219} stroke="#454242" />
         <circle cx={334.5} cy={361.5} r={317} stroke="#454242" /> */}

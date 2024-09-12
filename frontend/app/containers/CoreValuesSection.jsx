@@ -9,7 +9,8 @@ import Image from "next/image";
 
 export default function CoreValuesSection() {
   return (
-    <section className="relative p-4 xs:px-10 sm:p-10 flex flex-col gap-24 lg:gap-20 z-0">
+    // <section className="relative p-4 xs:px-10 sm:p-10 flex flex-col gap-24 lg:gap-20 z-0 ">
+    <section className="relative p-4 xs:px-10 sm:p-10 flex flex-col gap-24 lg:gap-20 z-0 rounded-3xl bg-white m-2">
       {/* <div className="w-full absolute inset-0 h-[75%] opacity-40">
         <SparklesCore
           id="tsparticlesfullpage"
@@ -35,7 +36,7 @@ export default function CoreValuesSection() {
           </p>
         </div>
       </div>
-      <CoreValuesCarousel />
+      <CoreValuesCarousel className="h-auto w-full max-md:max-w-md md:max-lg:max-w-lg lg:w-2/5 lg:h-auto object-contain overflow-visible" />
     </section>
   );
 }
