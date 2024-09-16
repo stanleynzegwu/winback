@@ -23,7 +23,8 @@ export default function RootLayout({
         {/* <Navbar /> */}
         <AuthProviders>
           <ClientProvider>
-            <SmoothScrolling>{children}</SmoothScrolling>
+            {/* <SmoothScrolling>{children}</SmoothScrolling> */}
+            {children}
           </ClientProvider>
         </AuthProviders>
       </body>

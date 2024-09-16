@@ -13,7 +13,7 @@ function Topbar() {
   return (
     <Headroom className="relative md:hidden z-50">
       <nav
-        className={`glassmorphism fixed top-0 left-0 flex flex-col px-10 w-[90%] mx-auto rounded-b-3xl bg-white/30 bg-opacity-20 text-white z-50 ${
+        className={`glassmorphism fixed top-0 left-0 flex flex-col px-10 w-[90%] rounded-b-3xl bg-white/30 bg-opacity-20 text-white z-50 ${
           isopen ? "max-md:h-96" : "h-16"
         }`}
       >

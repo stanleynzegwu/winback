@@ -12,7 +12,8 @@ import { useSession } from "next-auth/react";
 
 function Navbar() {
   const { data: session } = useSession();
-  const isAdmin = session?.user.role === "admin";
+  // const isAdmin = session?.user.role === "admin";
+  const isAdmin = true;
 
   const [isopen, setisopen] = useState(false);
   const dashboardVisible = (item: string, isAdmin: boolean) => {

@@ -16,7 +16,7 @@ export default function RootLayout({
     //   <div className="flex-1 w-full ml-[20%]">{children}</div>
     // </div>
 
-    <div className="flex flex-col min-h-screen md:flex-row bg-red-300">
+    <div className="flex flex-col min-h-screen md:flex-row bg-[#444291]">
       {/* Leftsidebar */}
       <Topbar />
       <LeftSidebar />

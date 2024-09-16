@@ -56,7 +56,7 @@ const LeftSidebar = () => {
           </span>
           <div
             className={`flex flex-col gap-3 p-2 py-4 ${
-              isExpanded ? "" : "rounded-full bg-teal-300"
+              isExpanded ? "" : "rounded-full bg-[#ACAAFE]"
             }`}
           >
             {data.map(({ iconPath, name, navigationPath }, index) => (
