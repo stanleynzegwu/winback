@@ -1,3 +1,9 @@
+import { DataTableDemo } from "../components/DataTableDemo";
+
 export default function Users() {
-  return <div className="h-[200vh] bg-blue-400 rounded-xl">users users</div>;
+  return (
+    <div className="p-4 min-h-screen bg-white rounded-xl">
+      <DataTableDemo />
+    </div>
+  );
 }

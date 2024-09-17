@@ -1,5 +1,6 @@
 import Image from "next/image";
 import VerticalTimelineSvg from "../components/svg/VerticalTimelineSvg";
+import { LampDemo } from "../components/LampDemo";
 
 export default function Section2() {
   const aboutItems2 = [
@@ -27,6 +28,7 @@ export default function Section2() {
 
   return (
     <section className="aboutSection min-h-screen p-2 lg:p-10 lg:px-16 w-full flex flex-col items-center justify-center gap-5">
+      <LampDemo />
       <div className="w-full flex flex-col lg:flex-row gap-4">
         <div className="w-full lg:w-1/2">
           <div className="pl-5 pr-2 pb-5">

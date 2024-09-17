@@ -14,6 +14,7 @@ const data = [
 
 const LeftSidebar = () => {
   const [isExpanded, setExpanded] = useState(true);
+
   return (
     <aside
       className={`relative hidden items-center md:block transition-all delay-150 duration-500 bg-orange-300  ${
@@ -61,7 +62,11 @@ const LeftSidebar = () => {
           >
             {data.map(({ iconPath, name, navigationPath }, index) => (
               <Link href={`/dashboard/${navigationPath}`} className="play-sound" key={index}>
-                <div className={`relative group flex gap-2 ${isExpanded ? "" : "w-6"}`}>
+                <div
+                  className={`relative group flex gap-2 ${
+                    isExpanded ? "hover:scale-105 p-2 transition-bg duration-500" : "w-6"
+                  } `}
+                >
                   <Image
                     src={iconPath}
                     alt="blur"

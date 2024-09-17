@@ -1,5 +1,7 @@
 import Image from "next/image";
 import { LineChartMultiple } from "./components/LineChartMultiple";
+import Link from "next/link";
+import { MoreVertical } from "lucide-react";
 
 export default function Dashboard() {
   return (
@@ -18,17 +20,13 @@ export default function Dashboard() {
             >
               {/*Box Icons */}
               <div className="flex justify-between">
-                <Image src={item.icon} alt="blur" width={500} height={500} className={`w-6 h-6`} />
-                <Image
-                  src="/images/icons/kebab-menu.png"
-                  alt="blur"
-                  width={500}
-                  height={500}
-                  className={`w-4 h-4`}
-                />
+                <Image src={item.icon} alt="blur" width={500} height={500} className={`w-5 h-5`} />
+                <MoreVertical className="h-5 w-5" />
+                {/* <LayoutDashboardIcon /> */}
+                {/* <Users /> */}
               </div>
               <span className="text-xl font-medium">{item.amount}</span>
-              <span>{item.about}</span>
+              <span className="text-sm">{item.about}</span>
             </div>
           ))}
         </div>
@@ -63,21 +61,20 @@ export default function Dashboard() {
                 time: "1:24pm",
               },
             ].map((item, index) => (
-              <div
-                className="w-full p-2 flex justify-between items-center rounded-2xl hover:shadow-[rgba(117,_115,_199,_0.30)_0px_0px_16px] transition-shadow duration-500"
-                key={index}
-              >
-                <Image
-                  src={item.avatar}
-                  alt="blur"
-                  width={500}
-                  height={500}
-                  className={`w-8 h-8 rounded-full`}
-                />
-                <span className="text-gray-500 text-sm">{item.name}</span>
-                <span className="text-gray-500 text-sm">{item.about}</span>
-                <span className="text-gray-500 text-sm">{item.time}</span>
-              </div>
+              <Link href={"/dashboard/user/1"} key={index}>
+                <div className="w-full p-2 flex justify-between items-center rounded-2xl hover:shadow-[rgba(117,_115,_199,_0.30)_0px_0px_16px] transition-shadow duration-500">
+                  <Image
+                    src={item.avatar}
+                    alt="blur"
+                    width={500}
+                    height={500}
+                    className={`w-8 h-8 rounded-full`}
+                  />
+                  <span className="text-gray-500 text-sm">{item.name}</span>
+                  <span className="text-gray-500 text-sm">{item.about}</span>
+                  <span className="text-gray-500 text-sm">{item.time}</span>
+                </div>
+              </Link>
             ))}
           </div>
         </div>
