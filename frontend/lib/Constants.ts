@@ -73,3 +73,38 @@ export const FAQs = [
     answer:`Subscribe to our newsletter or follow us on social media to stay informed about our latest projects and impact stories.`
   },
 ]
+
+export const CAMPAIGNS = [
+  {
+    name: "Project-Back-To-School",
+    status: "Ongoing",
+    start: '10/09/2024',
+    end: '10/10/2024',
+    donations: '20,000',
+    volunteers: 20,
+  },
+  {
+    name: "vision-Feed-To-Live",
+    status: "Ongoing",
+    start: '10/09/2024',
+    end: '10/10/2024',
+    donations: '20,000',
+    volunteers: 20,
+  },
+  {
+    name: "Save-A-Soul",
+    status: "Ongoing",
+    start: '10/09/2024',
+    end: '10/10/2024',
+    donations: '20,000',
+    volunteers: 20,
+  },
+  {
+    name: "Give-to-Live",
+    status: "Ongoing",
+    start: '10/09/2024',
+    end: '10/10/2024',
+    donations: '20,000',
+    volunteers: 20,
+  },
+]

@@ -5,7 +5,6 @@ import Link from "next/link";
 import { useState } from "react";
 import Headroom from "react-headroom";
 import HamburgerIcon from "@/app/components/svg/HamburgerIcon";
-import { div } from "three/examples/jsm/nodes/Nodes.js";
 
 function Topbar() {
   const [isopen, setisopen] = useState(false);
@@ -13,7 +12,7 @@ function Topbar() {
   return (
     <Headroom className="relative md:hidden z-50">
       <nav
-        className={`glassmorphism fixed top-0 left-0 flex flex-col px-10 w-[90%] rounded-b-3xl bg-white/30 bg-opacity-20 text-white z-50 ${
+        className={`fixed top-0 left-0 flex flex-col px-10 w-full border-b-[1px] bg-white border-gray-500 z-50 ${
           isopen ? "max-md:h-96" : "h-16"
         }`}
       >

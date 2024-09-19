@@ -7,7 +7,7 @@ import { useState } from "react";
 const data = [
   { iconPath: "/images/users-icon.png", name: "home", navigationPath: "/" },
   { iconPath: "/images/users-icon.png", name: "users", navigationPath: "users" },
-  { iconPath: "/images/users-icon.png", name: "campaign", navigationPath: "users" },
+  { iconPath: "/images/users-icon.png", name: "campaign", navigationPath: "campaign" },
   { iconPath: "/images/users-icon.png", name: "content", navigationPath: "users" },
   { iconPath: "/images/users-icon.png", name: "account", navigationPath: "users" },
 ];

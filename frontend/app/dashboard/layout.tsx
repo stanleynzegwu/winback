@@ -21,7 +21,7 @@ export default function RootLayout({
       <Topbar />
       <LeftSidebar />
       {/* rightSidebar */}
-      <div className="w-full max-h-screen min-h-screen overflow-x-hidden overflow-y-auto relative p-4 ">
+      <div className="w-full max-h-screen min-h-screen overflow-x-hidden overflow-y-auto relative md:p-4 ">
         {children}
       </div>
     </div>

@@ -1,18 +1,33 @@
 import Image from "next/image";
 import { LineChartMultiple } from "./components/LineChartMultiple";
 import Link from "next/link";
-import { MoreVertical } from "lucide-react";
+import { Banknote, MoreVertical } from "lucide-react";
 
 export default function Dashboard() {
   return (
     <div className="w-full min-h-screen bg-white rounded-xl p-4 flex gap-4">
       <div className="w-[70%]  flex flex-col gap-4">
-        <span className="inline-block text-2xl font-bold p-4">Good morning, James.</span>
+        {/* <span className="inline-block text-2xl font-bold p-4">Good morning, James.</span> */}
+        <div className="w-full h-52 p-4 rounded-xl bg-gradient-to-b from-[#F2F2FC] to-[#ACAAFE]">
+          Good morning, James.
+        </div>
         <div className="w-full flex flex-col md:flex-row gap-2">
           {[
-            { icon: "/images/users-icon.png", amount: "$50,0000", about: "your bank balance" },
-            { icon: "/images/users-icon.png", amount: "$50,0000", about: "your bank balance" },
-            { icon: "/images/users-icon.png", amount: "$50,0000", about: "your bank balance" },
+            {
+              icon: <Banknote className="w-6 h-6" />,
+              amount: "$50,0000",
+              about: "your bank balance",
+            },
+            {
+              icon: <Banknote className="w-6 h-6" />,
+              amount: "$50,0000",
+              about: "your bank balance",
+            },
+            {
+              icon: <Banknote className="w-6 h-6" />,
+              amount: "$50,0000",
+              about: "your bank balance",
+            },
           ].map((item, index) => (
             <div
               className="p-4 flex-1 flex flex-col justify-between rounded-xl h-36 shadow-[rgba(117,_115,_199,_0.2)_0px_0px_16px]"
@@ -20,7 +35,7 @@ export default function Dashboard() {
             >
               {/*Box Icons */}
               <div className="flex justify-between">
-                <Image src={item.icon} alt="blur" width={500} height={500} className={`w-5 h-5`} />
+                {item.icon}
                 <MoreVertical className="h-5 w-5" />
                 {/* <LayoutDashboardIcon /> */}
                 {/* <Users /> */}
