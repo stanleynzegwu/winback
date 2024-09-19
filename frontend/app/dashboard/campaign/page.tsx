@@ -14,7 +14,7 @@ export default function Campaign() {
     },
     {
       name: "Active Campaigns",
-      amount: 3,
+      amount: "3",
       color: "#b6e6c6",
     },
   ];
