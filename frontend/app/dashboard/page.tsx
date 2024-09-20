@@ -5,8 +5,8 @@ import { Banknote, MoreVertical } from "lucide-react";
 
 export default function Dashboard() {
   return (
-    <div className="w-full min-h-screen bg-white rounded-xl p-4 flex gap-4">
-      <div className="w-[70%]  flex flex-col gap-4">
+    <div className="max-md:pt-20 w-full min-h-screen bg-white rounded-xl p-4 flex flex-col lg:flex-row gap-4">
+      <div className="w-full lg:w-[70%]  flex flex-col gap-4">
         {/* <span className="inline-block text-2xl font-bold p-4">Good morning, James.</span> */}
         <div className="w-full h-52 p-4 rounded-xl bg-gradient-to-b from-[#F2F2FC] to-[#ACAAFE]">
           Good morning, James.
@@ -94,7 +94,7 @@ export default function Dashboard() {
           </div>
         </div>
       </div>
-      <div className="w-[30%] p-4 bg-[#F2F2FC] rounded-xl min-h-full">kkkkkkkk</div>
+      <div className="w-full lg:w-[30%] p-4 bg-[#F2F2FC] rounded-xl min-h-full">kkkkkkkk</div>
     </div>
   );
 }

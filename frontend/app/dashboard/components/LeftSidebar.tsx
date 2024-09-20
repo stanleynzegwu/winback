@@ -2,18 +2,26 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 const data = [
   { iconPath: "/images/users-icon.png", name: "home", navigationPath: "/" },
   { iconPath: "/images/users-icon.png", name: "users", navigationPath: "users" },
   { iconPath: "/images/users-icon.png", name: "campaign", navigationPath: "campaign" },
-  { iconPath: "/images/users-icon.png", name: "content", navigationPath: "users" },
-  { iconPath: "/images/users-icon.png", name: "account", navigationPath: "users" },
+  { iconPath: "/images/users-icon.png", name: "content", navigationPath: "content" },
+  { iconPath: "/images/users-icon.png", name: "account", navigationPath: "account" },
 ];
 
 const LeftSidebar = () => {
   const [isExpanded, setExpanded] = useState(true);
+  const pathname = usePathname();
+
+  const isCurrentPath = (path: string) => {
+    // Remove the "/dashboard" part from the pathname
+    const currentPath = pathname.replace("/dashboard", "").split("/")[1] || "/";
+    return currentPath === path;
+  };
 
   return (
     <aside
@@ -65,7 +73,7 @@ const LeftSidebar = () => {
                 <div
                   className={`relative group flex gap-2 ${
                     isExpanded ? "hover:scale-105 p-2 transition-bg duration-500" : "w-6"
-                  } `}
+                  } ${isCurrentPath(navigationPath) && "bg-[#ACAAFE] rounded-xl"}`}
                 >
                   <Image
                     src={iconPath}
