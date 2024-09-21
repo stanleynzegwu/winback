@@ -1,17 +1,26 @@
 "use client";
 
+import { LayoutDashboard, Megaphone, Users } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 
+type IconType = React.FC<React.SVGProps<SVGSVGElement>>;
 const data = [
-  { iconPath: "/images/users-icon.png", name: "home", navigationPath: "/" },
-  { iconPath: "/images/users-icon.png", name: "users", navigationPath: "users" },
-  { iconPath: "/images/users-icon.png", name: "campaign", navigationPath: "campaign" },
-  { iconPath: "/images/users-icon.png", name: "content", navigationPath: "content" },
-  { iconPath: "/images/users-icon.png", name: "account", navigationPath: "account" },
+  { icon: LayoutDashboard, name: "home", navigationPath: "/" },
+  { icon: Users, name: "users", navigationPath: "users" },
+  { icon: Megaphone, name: "campaign", navigationPath: "campaign" },
+  { icon: LayoutDashboard, name: "content", navigationPath: "content" },
+  { icon: LayoutDashboard, name: "account", navigationPath: "account" },
 ];
+
+const navIcon = (
+  Icon: IconType,
+  path: string,
+  fnc: (param: string) => boolean,
+  isExpanded: boolean
+) => <Icon className={`w-6 h-6 ${fnc(path) && !isExpanded && "scale-125"}`} />;
 
 const LeftSidebar = () => {
   const [isExpanded, setExpanded] = useState(true);
@@ -68,27 +77,20 @@ const LeftSidebar = () => {
               isExpanded ? "" : "rounded-full bg-[#ACAAFE]"
             }`}
           >
-            {data.map(({ iconPath, name, navigationPath }, index) => (
+            {data.map(({ icon, name, navigationPath }, index) => (
               <Link href={`/dashboard/${navigationPath}`} className="play-sound" key={index}>
                 <div
-                  className={`relative group flex gap-2 ${
-                    isExpanded ? "hover:scale-105 p-2 transition-bg duration-500" : "w-6"
+                  className={`relative group flex gap-2 transition-all duration-500 ${
+                    isExpanded ? "hover:scale-105 p-2 " : "w-6 hover:scale-110"
                   } ${isCurrentPath(navigationPath) && "bg-[#ACAAFE] rounded-xl"}`}
                 >
-                  <Image
-                    src={iconPath}
-                    alt="blur"
-                    width={500}
-                    height={500}
-                    className={`font-medium w-6 h-6 transition-transfrom duration-500 ${
-                      isExpanded ? "" : "hover:scale-125"
-                    }`}
-                  />
+                  {/* LeftSidebar Icon */}
+                  {navIcon(icon, navigationPath, isCurrentPath, isExpanded)}
                   <span
                     className={`font-medium capitalize transition-opacity ease-in-out ${
                       isExpanded
-                        ? "opacity-1 delay-150 duration-500 "
-                        : "opacity-0 delay-200 duration-300"
+                        ? "opacity-1 delay-150 duration-500"
+                        : "hidden opacity-0 delay-150 duration-500"
                     } `}
                   >
                     {name}
