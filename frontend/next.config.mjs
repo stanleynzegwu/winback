@@ -5,6 +5,9 @@
 // export default nextConfig;
 
 const nextConfig = {
+    images: {
+      domains: ["firebasestorage.googleapis.com"],
+    },
     webpack: (config, { isServer }) => {
       // Add raw-loader for GLSL files
       config.module.rules.push({

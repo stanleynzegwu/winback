@@ -4,10 +4,19 @@ import { useEffect } from "react";
 import Image from "next/image";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Link from "next/link";
+import { useSelector } from "react-redux";
+import { RootState } from "../state/store";
 
 gsap.registerPlugin(ScrollTrigger);
 
 function GallarySection() {
+  const hasFetched = useSelector((state: RootState) => state.main.hasFetchedGeneralData);
+  const mediaHubData = useSelector(
+    (state: RootState) => state.main.fetchedGeneralDataObj.mediaHubData
+  );
+  const flattenedImages = mediaHubData.flatMap((item) => item.mediaImages);
+
   useEffect(() => {
     let breakpoint = gsap.matchMedia();
     breakpoint.add("(min-width: 1024px)", () => {
@@ -84,7 +93,7 @@ function GallarySection() {
           className="rounded-3xl flex flex-col lg:flex-row h-full max-md:p-8 overflow-hidden bg-white"
         >
           <div className="flex flex-col gap-4 justify-between lg:p-8 w-full lg:min-w-[500px] lg:w-[42%]">
-            <h2 className="text-center">Gallary</h2>
+            <h2 className="text-center">Gallery</h2>
             <p>
               we believe in the power of community-driven change. Through our various projects,
               we’ve reached countless lives, offering support and resources where it’s needed most.
@@ -101,7 +110,10 @@ function GallarySection() {
             <div className="max-md:hidden relative w-full">
               {/* line */}
               <div className="mb-6 w-2/3 h-1 bg-gray-100 rounded-full mx-auto" />
-              <button className="relative w-36 flex gap-2 rounded-full px-5 py-4 bg-purple-500 text-white mx-auto">
+              <Link
+                href={"/gallery"}
+                className="relative w-36 flex gap-2 rounded-full px-5 py-4 bg-purple-500 text-white mx-auto"
+              >
                 <span className="capitalize">photos</span>
                 <Image
                   src="/images/forward-icon.png"
@@ -110,7 +122,7 @@ function GallarySection() {
                   height={500}
                   className="absolute right-3 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-white p-1"
                 />
-              </button>
+              </Link>
             </div>
           </div>
           {/* Animated scrolling Images */}
@@ -122,13 +134,9 @@ function GallarySection() {
             <div id="scroll-up" className="lg:absolute -top-full left-0 lg:h-full w-full lg:w-1/2">
               {/* <div id="scroll-up" className="h-full w-1/2"> */}
               <div className="flex flex-row lg:flex-col gap-2">
-                {Array.from("hellooo").map((_, index) => (
+                {flattenedImages.map((imgSrc, index) => (
                   <Image
-                    src={
-                      Math.ceil(Math.random() * 10) <= 5
-                        ? "/images/rose.jpg"
-                        : "/images/womantree2.jpg"
-                    }
+                    src={imgSrc}
                     alt=""
                     width={500}
                     height={500}
@@ -142,20 +150,19 @@ function GallarySection() {
             <div id="scroll-down" className="lg:absolute top-0 right-0 lg:h-full w-full lg:w-1/2">
               {/* <div id="scroll-down" className="h-full w-1/2"> */}
               <div className="flex flex-row lg:flex-col gap-2">
-                {Array.from("world").map((_, index) => (
-                  <Image
-                    src={
-                      Math.ceil(Math.random() * 10) <= 5
-                        ? "/images/rose.jpg"
-                        : "/images/womantree2.jpg"
-                    }
-                    alt=""
-                    width={500}
-                    height={500}
-                    className="rounded-xl w-60 h-72"
-                    key={index}
-                  />
-                ))}
+                {hasFetched &&
+                  flattenedImages
+                    .reverse()
+                    .map((imgSrc, index) => (
+                      <Image
+                        src={imgSrc}
+                        alt=""
+                        width={500}
+                        height={500}
+                        className="rounded-xl w-60 h-72"
+                        key={index}
+                      />
+                    ))}
               </div>
             </div>
           </div>

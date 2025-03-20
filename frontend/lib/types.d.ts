@@ -3,3 +3,12 @@ export interface donationBreakdownData {
     color: string;
     content: string;
 }
+
+// Define a type for the form state
+export type CampaignFormState = {
+  name: string;
+  campaignImages: File[]; // Array of image URLs (base64 or paths)
+  description: string;
+  date: string;
+  status: "draft" | "ongoing" | "completed"; // Specific possible values for status
+};

@@ -6,6 +6,8 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { UserModule } from './users/users.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { AuthModule } from './auth/auth.module';
+import { CampaignModule } from './campaign/campaign.module';
+import { MediaHubModule } from './media-hub/mediaHub.module';
 
 @Module({
   imports: [
@@ -20,7 +22,9 @@ import { AuthModule } from './auth/auth.module';
       inject: [ConfigService],
     }),
     UserModule,
-    AuthModule
+    AuthModule,
+    CampaignModule,
+    MediaHubModule
   ],
   controllers: [AppController],
   providers: [AppService],

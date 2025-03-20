@@ -11,7 +11,7 @@ const data = [
   { icon: LayoutDashboard, name: "home", navigationPath: "/" },
   { icon: Users, name: "users", navigationPath: "users" },
   { icon: Megaphone, name: "campaign", navigationPath: "campaign" },
-  { icon: LayoutDashboard, name: "content", navigationPath: "content" },
+  { icon: LayoutDashboard, name: "media-hub", navigationPath: "media-hub" },
   { icon: LayoutDashboard, name: "account", navigationPath: "account" },
 ];
 

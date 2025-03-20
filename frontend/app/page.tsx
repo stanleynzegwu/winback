@@ -13,7 +13,7 @@ export default function Home() {
       <FAQ />
 
       {/* Background Color */}
-      <div className="fixed top-0 left-0 h-screen w-screen bg-[#468BC9] -z-30" />
+      <div className="fixed top-0 left-0 h-screen w-screen bg-[#dfecf7] -z-30" />
       {/* Background Blur */}
       <div className="fixed md:hidden lg:inline left-0 top-0 w-48 h-40 md:w-60 2lg:w-80 md:h-40 -translate-y-1/2 -translate-x-1/4 rounded-b-full bg-blur-purple bg-violet-900 blur-3xl 2lg:blur-6xl overflow-hidden -z-30" />
       <div className="fixed right-0 top-0 -translate-y-1/2 w-36 h-40 md:h-2/5 md:w-56 2lg:w-72 rounded-l-full bg-violet-900 blur-2xl md:blur-3xl 2lg:blur-4xl overflow-hidden -z-30" />

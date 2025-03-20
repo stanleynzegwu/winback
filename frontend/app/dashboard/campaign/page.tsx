@@ -1,3 +1,5 @@
+"use client";
+
 import { BaggageClaim } from "lucide-react";
 import { DataTableDemo } from "../components/DataTableDemo";
 import Link from "next/link";
@@ -23,6 +25,7 @@ export default function Campaign() {
       icon: <BaggageClaim className="w-6 h-6" />,
     },
   ];
+
   return (
     <div className="max-md:pt-20 w-full p-4 flex flex-col gap-2 lg:gap-4 min-h-screen bg-white md:rounded-xl">
       <div className="w-full flex flex-col xs:flex-row gap-2 lg:gap-4 xs:justify-between">

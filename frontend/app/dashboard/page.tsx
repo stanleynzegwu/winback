@@ -1,9 +1,46 @@
+"use client";
+
 import Image from "next/image";
 import { LineChartMultiple } from "./components/LineChartMultiple";
 import Link from "next/link";
 import { Banknote, MoreVertical } from "lucide-react";
+import { useEffect } from "react";
+import { publicRequest } from "@/lib/api";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../state/store";
+import { setDashboardData, setFetchedData } from "../state/dashboardSlice";
 
 export default function Dashboard() {
+  const dispatch = useDispatch();
+
+  // Get Redux state
+  const { fetchedData, campaigns, donations } = useSelector((state: RootState) => state.dashboard);
+
+  // Fetch data on first load
+  useEffect(() => {
+    console.log(fetchedData);
+    if (!fetchedData) {
+      const fetchAboutData = async () => {
+        try {
+          const campaignResponse = await publicRequest.get("/campaign");
+          if (campaignResponse.status === 200) {
+            dispatch(
+              setDashboardData({
+                campaigns: campaignResponse.data.campaigns,
+                donations: campaignResponse.data.donations,
+              }) //later put donation data hee rathr than campaign
+            );
+            dispatch(setFetchedData(true));
+          }
+        } catch (error) {
+          console.error("Error fetching data:", error);
+        }
+      };
+
+      fetchAboutData();
+    }
+  }, [fetchedData, dispatch]); // ✅ Include dependencies
+
   return (
     <div className="max-md:pt-20 w-full min-h-screen bg-white rounded-xl p-4 flex flex-col lg:flex-row gap-4">
       <div className="w-full lg:w-[70%]  flex flex-col gap-4">
