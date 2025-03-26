@@ -134,16 +134,17 @@ function GallarySection() {
             <div id="scroll-up" className="lg:absolute -top-full left-0 lg:h-full w-full lg:w-1/2">
               {/* <div id="scroll-up" className="h-full w-1/2"> */}
               <div className="flex flex-row lg:flex-col gap-2">
-                {flattenedImages.map((imgSrc, index) => (
-                  <Image
-                    src={imgSrc}
-                    alt=""
-                    width={500}
-                    height={500}
-                    className="img rounded-xl w-60 h-72"
-                    key={index}
-                  />
-                ))}
+                {hasFetched &&
+                  flattenedImages.map((imgSrc, index) => (
+                    <Image
+                      src={imgSrc}
+                      alt=""
+                      width={500}
+                      height={500}
+                      className="img rounded-xl w-60 h-72"
+                      key={index}
+                    />
+                  ))}
               </div>
             </div>
             {/* Container that scrolls downwards */}

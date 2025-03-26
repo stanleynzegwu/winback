@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Get, Injectable, Param, Query } from '@nestjs/common';
 import { CreateCampaignDto } from './dto/create-campaign.dto';
 import { UpdateCampaignDto } from './dto/update-campaign.dto';
 import { Campaign } from 'src/schemas/Campaign.schema';
@@ -25,8 +25,8 @@ export class CampaignService {
     return campaigns
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} campaign`;
+  findOne( id: string) {  // Make sure id is a string
+    return this.campaignModel.findById(id);
   }
 
   update(id: number, updateCampaignDto: UpdateCampaignDto) {

@@ -1,10 +1,65 @@
 "use client";
 
-import { BaggageClaim } from "lucide-react";
-import { DataTableDemo } from "../components/DataTableDemo";
+import { BaggageClaim, MoreHorizontal, Pencil, Trash } from "lucide-react";
 import Link from "next/link";
+import { DataTable } from "../components/DataTable";
+import { ColumnDef } from "@tanstack/react-table";
+import { CampaignType } from "@/lib/types";
+import { useSelector } from "react-redux";
+import { RootState } from "@/app/state/store";
+import DataTableSkeleton from "@/app/components/skeletons/DataTableSkeleton";
+
+import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuCheckboxItem,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 export default function Campaign() {
+  const hasFetched = useSelector((state: RootState) => state.main.hasFetchedGeneralData);
+  const campaignData = useSelector(
+    (state: RootState) => state.main.fetchedGeneralDataObj.campaignData
+  ) as CampaignType[];
+
+  const campaignColumns: ColumnDef<CampaignType>[] = [
+    { accessorKey: "status", header: "Status" },
+    { accessorKey: "name", header: "Campaign Name" },
+    { accessorKey: "category", header: "Category" },
+    { accessorKey: "date", header: "Date" },
+    {
+      id: "actions",
+      enableHiding: false,
+      cell: ({ row }) => {
+        //const payment = row.original;
+
+        return (
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="ghost" className="h-8 w-8 p-0">
+                <span className="sr-only">Open menu</span>
+                <MoreHorizontal className="h-4 w-4" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              <DropdownMenuLabel>Actions</DropdownMenuLabel>
+              {/* <DropdownMenuItem onClick={() => navigator.clipboard.writeText(payment._id)}>
+                Copy payment ID
+              </DropdownMenuItem> */}
+              <DropdownMenuSeparator />
+              <DropdownMenuItem className="pointer">Edit</DropdownMenuItem>
+              <DropdownMenuItem>Delete</DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        );
+      },
+    },
+  ];
+
   const DATA = [
     {
       name: "Total Campaigns",
@@ -49,7 +104,16 @@ export default function Campaign() {
       <Link href="/dashboard/campaign/create">
         <button className="w-full p-4 rounded-xl bg-green-500">Create</button>
       </Link>
-      <DataTableDemo />
+
+      {hasFetched ? (
+        <DataTable
+          data={campaignData}
+          columns={campaignColumns}
+          filterPlaceholder="Search campaigns..."
+        />
+      ) : (
+        <DataTableSkeleton />
+      )}
     </div>
   );
 }

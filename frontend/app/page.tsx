@@ -1,5 +1,6 @@
 import { Header } from "./components";
 import { Section2, Section3, Section4, CoreValuesSection, FAQ, GallarySection } from "./containers";
+import ProjectsSection from "./containers/ProjectsSection";
 
 export default function Home() {
   return (
@@ -9,6 +10,7 @@ export default function Home() {
       {/* <Section3 /> */}
       <CoreValuesSection />
       <GallarySection />
+      <ProjectsSection />
       <Section4 />
       <FAQ />
 

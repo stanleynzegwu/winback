@@ -19,7 +19,7 @@ export class CampaignController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.campaignService.findOne(+id);
+    return this.campaignService.findOne(id);
   }
 
   @Patch(':id')

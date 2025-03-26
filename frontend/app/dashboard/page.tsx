@@ -113,7 +113,7 @@ export default function Dashboard() {
                 time: "1:24pm",
               },
             ].map((item, index) => (
-              <Link href={"/dashboard/user/1"} key={index}>
+              <Link href={`/dashboard/user/${index}`} key={index}>
                 <div className="w-full p-2 flex justify-between items-center rounded-2xl hover:shadow-[rgba(117,_115,_199,_0.30)_0px_0px_16px] transition-shadow duration-500">
                   <Image
                     src={item.avatar}

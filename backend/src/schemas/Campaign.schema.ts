@@ -20,6 +20,14 @@ export class Campaign {
       default: 'draft', // Default value
     })
     status: 'draft' | 'ongoing' | 'completed'; // TypeScript type definition
+
+    @Prop({
+      type: String,
+      enum: ["Youths", "Medical & Health", "Education", "Widows & Orphans", "Social Economic Empowerment", 
+    "Public Awareness", "Save A Soul", "Prison"],
+    })
+    category:  "Youths" | "Medical & Health" | "Education" | "Widows & Orphans" | "Social Economic Empowerment" | 
+    "Public Awareness" | "Save A Soul" | "Prison";
 }
 
 export const CampaignSchema =  SchemaFactory.createForClass(Campaign);

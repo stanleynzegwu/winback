@@ -11,4 +11,16 @@ export type CampaignFormState = {
   description: string;
   date: string;
   status: "draft" | "ongoing" | "completed"; // Specific possible values for status
+  category:  "Youths" | "Medical & Health" | "Education" | "Widows & Orphans" | "Social Economic Empowerment" | 
+  "Public Awareness" | "Save A Soul" | "Prison";
 };
+
+export type Campaign = {
+    campaignImages: string[];
+    status: CampaignFormState["status"];
+    name: string;
+    category: CampaignFormState["category"];
+    description: string;
+    date: string;
+    _id: number;
+  };

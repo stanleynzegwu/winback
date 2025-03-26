@@ -108,3 +108,14 @@ export const CAMPAIGNS = [
     volunteers: 20,
   },
 ]
+
+export const PROJECT_CATEGORIES = [
+  "Youths",
+  "Medical & Health",
+  "Education",
+  "Widows & Orphans",
+  "Social Economic Empowerment",
+  "Public Awareness",
+  "Save A Soul",
+  "Prison",
+];

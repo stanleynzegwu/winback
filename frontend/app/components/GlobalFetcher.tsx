@@ -14,9 +14,12 @@ export default function GlobalFetcher() {
     if (!hasFetched) {
       const fetchGeneralData = async () => {
         try {
-          const res = await publicRequest.get("/media-hub");
-          if (res.status === 200) {
-            dispatch(setGeneralData({ mediaHubData: res.data })); // Store data
+          const campaignRes = await publicRequest.get("/campaign");
+          const mediaHubRes = await publicRequest.get("/media-hub");
+          if (mediaHubRes.status === 200 && campaignRes.status === 200) {
+            dispatch(
+              setGeneralData({ mediaHubData: mediaHubRes.data, campaignData: campaignRes.data })
+            ); // Store data
             dispatch(sethasFetchedGeneralData(true)); // Mark as fetched
           }
         } catch (error) {

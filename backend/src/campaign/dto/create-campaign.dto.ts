@@ -21,4 +21,9 @@ export class CreateCampaignDto {
   
     @IsIn(['draft', 'ongoing', 'completed']) // Ensures status is one of the three possible values
     status: 'draft' | 'ongoing' | 'completed'; // TypeScript type definition
+
+    @IsIn(["Youths", "Medical & Health", "Education", "Widows & Orphans", "Social Economic Empowerment", 
+    "Public Awareness", "Save A Soul", "Prison"])
+    category:  "Youths" | "Medical & Health" | "Education" | "Widows & Orphans" | "Social Economic Empowerment" | 
+    "Public Awareness" | "Save A Soul" | "Prison";
 }

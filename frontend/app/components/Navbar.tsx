@@ -16,32 +16,18 @@ function Navbar() {
   const isAdmin = true;
 
   const [isopen, setisopen] = useState(false);
-  const dashboardVisible = (item: string, isAdmin: boolean) => {
+
+  // const dashboardVisible = (item: string, isAdmin: boolean) => {
+  //   if (item !== "dashboard") return true;
+
+  //   return isAdmin;
+  // };
+  const dashboardVisible = (item: string) => {
     if (item !== "dashboard") return true;
 
-    return isAdmin;
+    // Show dashboard only in development mode
+    return process.env.NODE_ENV === "development";
   };
-  type ClickableElement = HTMLElement | SVGElement | SVGPathElement;
-
-  useEffect(() => {
-    // const handleClick = () => {
-    //   playClickSound();
-    // };
-    const handleClick = (event: MouseEvent<ClickableElement>) => {
-      const clickedElement = event.target as ClickableElement;
-      // console.log(clickedElement.classList);
-      if (clickedElement.classList.contains("play-sound")) {
-        playClickSound();
-      }
-    };
-    //@ts-ignore
-    document.addEventListener("click", handleClick);
-
-    return () => {
-      //@ts-ignore
-      document.removeEventListener("click", handleClick);
-    };
-  }, []);
 
   return (
     <Headroom className="relative z-50">
@@ -60,16 +46,16 @@ function Navbar() {
               className="bg-cover object-cover transition-all duration-500 ease-in-out w-14 h-14 cursor-pointer"
             />
           </Link>
-          <HamburgerIcon isopen={isopen} setisopen={setisopen} classname={"play-sound md:hidden"} />
+          <HamburgerIcon isopen={isopen} setisopen={setisopen} classname={" md:hidden"} />
           <ul className="hidden md:flex gap-14">
-            {["about", "FAQ", "contact", "dashboard"].map((item, index) => (
+            {["about", "FAQ", "contact", "projects", "dashboard"].map((item, index) => (
               <li
-                className={`capitalize font-medium hover:text-accentColor-light transition-all duration-500 ease-in-out ${
-                  dashboardVisible(item, isAdmin) ? "visible" : "hidden"
+                className={`capitalize font-medium text-black hover:text-purple-600 transition-all duration-500 ease-in-out ${
+                  dashboardVisible(item) ? "visible" : "hidden"
                 }`}
                 key={index}
               >
-                <Link href={`/${item}`} className="play-sound">
+                <Link href={`/${item}`} className="">
                   {item}
                 </Link>
               </li>
@@ -83,14 +69,14 @@ function Navbar() {
             isopen ? "visible md:hidden" : "hidden"
           }`}
         >
-          {["about", "FAQ", "contact", "dashboard"].map((item, index) => (
+          {["about", "FAQ", "contact", "projects", "dashboard"].map((item, index) => (
             <li
               className={`inline-block capitalize font-medium hover:text-accentColor-light transition-all duration-500 ease-in-out ${
-                dashboardVisible(item, isAdmin) ? "visible" : "hidden"
+                dashboardVisible(item) ? "visible" : "hidden"
               }`}
               key={index}
             >
-              <Link href={`/${item}`} className="play-sound">
+              <Link href={`/${item}`} className="">
                 {item}
               </Link>
             </li>
