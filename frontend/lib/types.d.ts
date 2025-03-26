@@ -15,12 +15,12 @@ export type CampaignFormState = {
   "Public Awareness" | "Save A Soul" | "Prison";
 };
 
-export type Campaign = {
-    campaignImages: string[];
-    status: CampaignFormState["status"];
-    name: string;
-    category: CampaignFormState["category"];
-    description: string;
-    date: string;
-    _id: number;
-  };
+export type CampaignType = {
+  campaignImages: string[];
+  status: CampaignFormState["status"];
+  name: string;
+  category: CampaignFormState["category"];
+  description: string;
+  date: string;
+  _id: number;
+};
