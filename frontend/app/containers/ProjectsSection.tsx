@@ -12,6 +12,7 @@ const ProjectsSection: React.FC = () => {
   const campaignData = useSelector(
     (state: RootState) => state.main.fetchedGeneralDataObj.campaignData
   );
+
   const ongoingCampaignData = campaignData.filter((campaign) => campaign.status === "ongoing");
   // Only render if there are ongoing campaigns
   if (!ongoingCampaignData.length) return null;

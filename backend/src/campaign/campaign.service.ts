@@ -29,8 +29,8 @@ export class CampaignService {
     return this.campaignModel.findById(id);
   }
 
-  update(id: number, updateCampaignDto: UpdateCampaignDto) {
-    return `This action updates a #${id} campaign`;
+  update(id: string, updateCampaignDto: UpdateCampaignDto) {
+    return  this.campaignModel.findByIdAndUpdate(id,updateCampaignDto,{ new: true })
   }
 
   remove(id: number) {

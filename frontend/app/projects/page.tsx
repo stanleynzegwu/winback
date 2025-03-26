@@ -13,10 +13,12 @@ export default function Projects() {
     (state: RootState) => state.main.fetchedGeneralDataObj.campaignData
   );
 
+  //filter out campaign which status is draft
+  const filteredCampaignList = campaignData.filter((campaign) => campaign.status !== "draft");
   const campaignList =
     selectedCategory === "All"
-      ? campaignData
-      : campaignData.filter((campaign) => campaign.category === selectedCategory);
+      ? filteredCampaignList
+      : filteredCampaignList.filter((campaign) => campaign.category === selectedCategory);
 
   return (
     <div className="p-2 md:p-4">
