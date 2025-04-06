@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { CreateMediaHubDto } from './dto/create-media-hub.dto';
 import { UpdateMediaHubDto } from './dto/update-media-hub.dto';
 import { InjectModel } from '@nestjs/mongoose';
-import { MediaHub } from 'src/schemas/MediaHub.schema';
+import { MediaHub } from '../schemas/MediaHub.schema';
 import { Model } from 'mongoose';
 
 @Injectable()

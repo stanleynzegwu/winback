@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { MediaHubService } from './mediaHub.service';
 import { MediaHubController } from './media-hub.controller';
 import { MongooseModule } from '@nestjs/mongoose';
-import { MediaHub, MediaHubSchema } from 'src/schemas/MediaHub.schema';
+import { MediaHub, MediaHubSchema } from '../schemas/MediaHub.schema';
 
 
 @Module({

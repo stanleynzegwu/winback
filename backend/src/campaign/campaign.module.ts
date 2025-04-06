@@ -20,7 +20,7 @@ import { Module } from '@nestjs/common';
 import { CampaignService } from './campaign.service';
 import { CampaignController } from './campaign.controller';
 import { MongooseModule } from '@nestjs/mongoose';
-import { Campaign, CampaignSchema } from 'src/schemas/Campaign.schema';
+import { Campaign, CampaignSchema } from '../schemas/Campaign.schema';
 
 @Module({
   imports: [

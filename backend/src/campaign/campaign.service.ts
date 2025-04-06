@@ -1,7 +1,7 @@
 import { Get, Injectable, Param, Query } from '@nestjs/common';
 import { CreateCampaignDto } from './dto/create-campaign.dto';
 import { UpdateCampaignDto } from './dto/update-campaign.dto';
-import { Campaign } from 'src/schemas/Campaign.schema';
+import { Campaign } from '../schemas/Campaign.schema';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 
