@@ -1,7 +1,8 @@
 import axios from "axios";
 import { CampaignFormState } from "./types";
 
-export const BASE_URL = "http://localhost:8000";
+//export const BASE_URL = "http://localhost:8000";
+export const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
 export const publicRequest = axios.create({
   baseURL: BASE_URL,

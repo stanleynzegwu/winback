@@ -71,7 +71,7 @@ export default function Campaign() {
             await deleteFileFromFirebase(imgUrl);
           }
 
-          //remove delted campignData
+          //remove deleted campaignData
           const filteredCampaignData = campaignData.filter((campaign) => campaign._id !== id);
           //update store
           dispatch(updateCampaignData(filteredCampaignData));
@@ -101,7 +101,7 @@ export default function Campaign() {
       cell: ({ row }) => {
         return (
           <DropdownMenu>
-            <DropdownMenuTrigger asChild>
+            <DropdownMenuTrigger asChild onClick={(e) => e.stopPropagation()}>
               <Button variant="ghost" className="h-8 w-8 p-0">
                 <span className="sr-only">Open menu</span>
                 <MoreHorizontal className="h-4 w-4" />
@@ -111,7 +111,12 @@ export default function Campaign() {
               <DropdownMenuLabel>Actions</DropdownMenuLabel>
               <DropdownMenuSeparator />
               <DropdownMenuItem className="pointer">Edit</DropdownMenuItem>
-              <DropdownMenuItem onClick={() => handleDelete(row.original._id)}>
+              <DropdownMenuItem
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleDelete(row.original._id);
+                }}
+              >
                 Delete
               </DropdownMenuItem>
             </DropdownMenuContent>
@@ -164,13 +169,4 @@ export default function Campaign() {
       )}
     </div>
   );
-}
-
-{
-  /* <div className="space-y-4 animate-pulse">
-<div className="h-10 w-full bg-gray-200 rounded-lg"></div>
-<div className="h-10 w-full bg-gray-200 rounded-lg"></div>
-<div className="h-10 w-full bg-gray-200 rounded-lg"></div>
-<div className="h-10 w-full bg-gray-200 rounded-lg"></div>
-</div> */
 }

@@ -1,11 +1,15 @@
 "use client";
+import { useRouter } from "next/navigation";
+import { updateCampaignData } from "@/app/state/mainSlice";
+import { AppDispatch, RootState } from "@/app/state/store";
 import { useToast } from "@/hooks/use-toast";
 import { publicRequest } from "@/lib/api";
 import { PROJECT_CATEGORIES } from "@/lib/Constants";
 import { uploadMultipleFilesToFirebase } from "@/lib/firebase";
-import { CampaignFormState } from "@/lib/types";
+import { CampaignFormState, CampaignType } from "@/lib/types";
 import React, { FormEvent, useState } from "react";
 import ReactMarkdown from "react-markdown";
+import { useDispatch, useSelector } from "react-redux";
 
 const campaignFormInitialState = {
   name: "",
@@ -16,7 +20,14 @@ const campaignFormInitialState = {
   category: PROJECT_CATEGORIES[0] as CampaignFormState["category"], // Type assertion
 };
 const CreateCampaign = () => {
+  const router = useRouter();
   const { toast } = useToast();
+  const dispatch = useDispatch<AppDispatch>();
+
+  const storeCampaignData = useSelector(
+    (state: RootState) => state.main.fetchedGeneralDataObj.campaignData
+  ) as CampaignType[];
+
   const [loading, setLoading] = useState<boolean>(false);
   // Define form state with the new campaign images array
   const [formState, setFormState] = useState<CampaignFormState>(campaignFormInitialState);
@@ -108,10 +119,15 @@ const CreateCampaign = () => {
           title: "Upload Successful",
           description: "Your Campaign was created successfully!",
         });
-        setLoading(false);
-        // Optionally, clear the form after submission
+        // clear the form after submission
         setPreviews([]);
         setFormState(campaignFormInitialState);
+
+        const updatedCampaignData = [res.data, ...storeCampaignData];
+        //update store data
+        dispatch(updateCampaignData(updatedCampaignData));
+        router.push("/dashboard/campaign");
+        setLoading(false);
       }
     } catch (error) {
       console.error("Error uploading images:", error);
