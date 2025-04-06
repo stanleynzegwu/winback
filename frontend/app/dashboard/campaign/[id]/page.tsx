@@ -200,7 +200,7 @@ const EditCampaign = ({ params }: { params: { id: number } }) => {
     fetchCampaign();
   }, [id]);
 
-  if (!formState) return <p>Loading...</p>;
+  if (!formState) return <EditCampaignSkeleton />;
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
@@ -287,7 +287,7 @@ const EditCampaign = ({ params }: { params: { id: number } }) => {
         const uploadedUrls = await uploadMultipleFilesToFirebase(newImages, "winback_campaign");
         updatedImages = [...existingUrls, ...uploadedUrls];
 
-        //Delete removed Images from zustand
+        //Delete removed Images from firebase
         for (const imgUrl of oldCampaignImages) {
           await deleteFileFromFirebase(imgUrl);
         }
@@ -434,3 +434,63 @@ const EditCampaign = ({ params }: { params: { id: number } }) => {
 };
 
 export default EditCampaign;
+
+/****************** SKELETON FOR LOADING ******************************/
+const EditCampaignSkeleton = () => {
+  return (
+    <div className="max-md:pt-20 p-4 min-h-screen bg-white md:rounded-xl">
+      <div className="animate-pulse">
+        <div className="h-6 w-40 bg-gray-300 rounded mb-8 mx-auto"></div>
+
+        <div className="flex flex-col gap-4">
+          {/* Input fields skeleton */}
+          {Array(2)
+            .fill(0)
+            .map((_, i) => (
+              <div key={i} className="flex flex-col gap-2">
+                <div className="h-4 w-32 bg-gray-300 rounded"></div>
+                <div className="h-10 w-full bg-gray-300 rounded"></div>
+              </div>
+            ))}
+
+          {/* Description preview skeleton */}
+          <div className="border border-gray-300 rounded-xl px-4 py-3 bg-gray-100 mt-2">
+            <div className="h-4 w-24 bg-gray-300 rounded mb-2"></div>
+            <div className="h-20 w-full bg-gray-300 rounded"></div>
+          </div>
+
+          {/* Image upload skeleton */}
+          <div className="h-10 w-full bg-gray-300 rounded"></div>
+
+          {/* Image preview skeleton */}
+          <div className="flex flex-wrap gap-4 mt-4">
+            {Array(3)
+              .fill(0)
+              .map((_, i) => (
+                <div key={i} className="h-60 w-40 bg-gray-300 rounded-xl"></div>
+              ))}
+          </div>
+
+          {/* Category & Status skeletons */}
+          {Array(2)
+            .fill(0)
+            .map((_, i) => (
+              <div key={i} className="flex flex-col gap-2">
+                <div className="h-4 w-32 bg-gray-300 rounded"></div>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                  {Array(4)
+                    .fill(0)
+                    .map((_, j) => (
+                      <div key={j} className="h-6 w-20 bg-gray-300 rounded"></div>
+                    ))}
+                </div>
+              </div>
+            ))}
+
+          {/* Submit button skeleton */}
+          <div className="h-12 w-full md:w-60 bg-gray-300 rounded self-end"></div>
+        </div>
+      </div>
+    </div>
+  );
+};

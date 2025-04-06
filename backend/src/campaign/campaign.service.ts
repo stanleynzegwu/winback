@@ -25,7 +25,7 @@ export class CampaignService {
     return campaigns
   }
 
-  findOne( id: string) {  // Make sure id is a string
+  findOne( id: string) {
     return this.campaignModel.findById(id);
   }
 
@@ -33,7 +33,7 @@ export class CampaignService {
     return  this.campaignModel.findByIdAndUpdate(id,updateCampaignDto,{ new: true })
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} campaign`;
+  remove(id: string) {
+    return this.campaignModel.findByIdAndDelete(id)
   }
 }

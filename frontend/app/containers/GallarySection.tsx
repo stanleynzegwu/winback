@@ -7,6 +7,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Link from "next/link";
 import { useSelector } from "react-redux";
 import { RootState } from "../state/store";
+import PrimaryButton from "../components/PrimaryBtn";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -110,18 +111,17 @@ function GallarySection() {
             <div className="max-md:hidden relative w-full">
               {/* line */}
               <div className="mb-6 w-2/3 h-1 bg-gray-100 rounded-full mx-auto" />
-              <Link
-                href={"/gallery"}
-                className="relative w-36 flex gap-2 rounded-full px-5 py-4 bg-purple-500 text-white mx-auto"
-              >
-                <span className="capitalize">photos</span>
-                <Image
-                  src="/images/forward-icon.png"
-                  alt=""
-                  width={500}
-                  height={500}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-white p-1"
-                />
+              <Link href={"/gallery"}>
+                <button className="relative group w-36 flex gap-2 rounded-full px-5 py-4 bg-purple-500 text-white mx-auto">
+                  <span className="capitalize">photos</span>
+                  <Image
+                    src="/images/forward-icon.png"
+                    alt="forward-icon"
+                    width={500}
+                    height={500}
+                    className="absolute right-4 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-white p-1 group-hover:right-3 transition-all"
+                  />
+                </button>
               </Link>
             </div>
           </div>

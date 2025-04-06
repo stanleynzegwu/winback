@@ -37,8 +37,11 @@ const mainSlice = createSlice({
     setGeneralData: (state, action: PayloadAction<fetchedGeneralDataObjState>) => {
       state.fetchedGeneralDataObj = action.payload;
     },
+    updateCampaignData: (state, action: PayloadAction<fetchedGeneralDataObjState["campaignData"]>) => {
+      state.fetchedGeneralDataObj.campaignData = action.payload;
+    },
   },
 });
 
-export const { sethasFetchedGeneralData, setGeneralData } = mainSlice.actions;
+export const { sethasFetchedGeneralData, setGeneralData, updateCampaignData } = mainSlice.actions;
 export default mainSlice.reducer;
