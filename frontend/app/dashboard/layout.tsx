@@ -2,7 +2,8 @@ import LeftSidebar from "./components/LeftSidebar";
 import Topbar from "./components/Topbar";
 import { redirect } from "next/navigation";
 import { getServerSession } from "next-auth";
-import { authOptions } from "../api/auth/[...nextauth]/route";
+import { authOptions } from "@/lib/authOptions";
+// import { authOptions } from "../api/auth/[...nextauth]/route";
 
 export default async function RootLayout({
   children,
