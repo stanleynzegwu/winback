@@ -106,7 +106,7 @@ async function refreshToken(token: JWT): Promise<JWT> {
     };
 }
 
-const authOptions: NextAuthOptions = {
+export const authOptions: NextAuthOptions = {
     providers: [
         CredentialsProvider({
             name:"Credentials",
@@ -129,6 +129,9 @@ const authOptions: NextAuthOptions = {
             }
         })
     ],
+    // pages: {
+    //   signIn: '/signin', // path to your custom sign-in page
+    // },
 
     callbacks: {
         async jwt({ token, user }) {
@@ -143,7 +146,6 @@ const authOptions: NextAuthOptions = {
             return session;
         },
     },
-    ///
     secret: process.env.NEXTAUTH_SECRET,
 };
 

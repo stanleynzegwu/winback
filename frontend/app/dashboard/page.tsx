@@ -9,8 +9,14 @@ import { publicRequest } from "@/lib/api";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../state/store";
 import { setDashboardData, setFetchedData } from "../state/dashboardSlice";
+import { useSession } from "next-auth/react";
+import { usePathname, useRouter } from "next/navigation";
+import { getTimeOfDayGreeting } from "@/lib/utils";
 
 export default function Dashboard() {
+  const { data: session, status } = useSession();
+  const router = useRouter();
+  const pathname = usePathname();
   const dispatch = useDispatch();
 
   // Get Redux state
@@ -18,7 +24,7 @@ export default function Dashboard() {
 
   // Fetch data on first load
   useEffect(() => {
-    console.log(fetchedData);
+    // if (session) {
     if (!fetchedData) {
       const fetchAboutData = async () => {
         try {
@@ -39,14 +45,49 @@ export default function Dashboard() {
 
       fetchAboutData();
     }
-  }, [fetchedData, dispatch]); // ✅ Include dependencies
+    // }
+  }, [fetchedData, dispatch]);
+
+  // // If the user is loading or not authenticated, redirect them to the sign-in page
+  // if (status === "loading") {
+  //   return <div>Loading...</div>;
+  // }
+
+  // if (!session) {
+  //   // Redirect to sign-in page with callbackUrl to return after successful login
+  //   router.push(`/api/auth/signin?callbackUrl=${encodeURIComponent(pathname)}`);
+  //   return null;
+  // }
+  // useEffect(() => {
+  //   if (status === "loading") {
+  //     return; // Wait for session to load
+  //   }
+
+  //   if (!session) {
+  //     // Redirect to sign-in page with callbackUrl (original page)
+  //     router.push(`/api/auth/signin?callbackUrl=${encodeURIComponent(pathname)}`);
+  //   } else if (session?.user?.role !== "admin") {
+  //     // If the user is not an admin, redirect to an "Access Denied" page
+  //     router.push("/access-denied");
+  //   }
+  // }, [session, status, pathname, router]);
+
+  // if (status === "loading") {
+  //   return <div>Loading...</div>;
+  // }
+
+  if (!session || session.user.role !== "admin") {
+    return null;
+  }
 
   return (
     <div className="max-md:pt-20 w-full min-h-screen bg-white rounded-xl p-4 flex flex-col lg:flex-row gap-4">
       <div className="w-full lg:w-[70%]  flex flex-col gap-4">
         {/* <span className="inline-block text-2xl font-bold p-4">Good morning, James.</span> */}
         <div className="w-full h-52 p-4 rounded-xl bg-gradient-to-b from-[#F2F2FC] to-[#ACAAFE]">
-          Good morning, James.
+          {`${getTimeOfDayGreeting()},${
+            session.user.username.charAt(0).toUpperCase() + session.user.username.slice(1)
+          }`}
         </div>
         <div className="w-full flex flex-col md:flex-row gap-2">
           {[

@@ -1,21 +1,30 @@
 import LeftSidebar from "./components/LeftSidebar";
 import Topbar from "./components/Topbar";
+import { redirect } from "next/navigation";
+import { getServerSession } from "next-auth";
+import { authOptions } from "../api/auth/[...nextauth]/route";
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
-    // <div className="w-full flex ">
-    //   {/* Leftsidebar */}
-    //   <div className="left-sidebar fixed w-[20%] h-screen min-w-[200px] bg-yellow-200">
-    //     left sidebar
-    //   </div>
-    //   {/* rightSidebar */}
-    //   <div className="flex-1 w-full ml-[20%]">{children}</div>
-    // </div>
+  const session = await getServerSession(authOptions);
 
+  // Check if the user is authenticated
+  if (!session) {
+    // Redirect to the sign-in page if the user is not authenticated
+    redirect(`/api/auth/signin?callbackUrl=${encodeURIComponent("/dashboard")}`);
+    //redirect(`/api/auth/signin?callbackUrl=${encodeURIComponent(pathname)}`);
+  }
+
+  // Check if the user is an admin
+  if (session.user.role !== "admin") {
+    // If the user is not an admin, redirect to an access-denied page
+    redirect("/access-denied");
+  }
+
+  return (
     <div className="flex flex-col min-h-screen md:flex-row bg-[#444291]">
       {/* Leftsidebar */}
       <Topbar />

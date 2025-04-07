@@ -80,7 +80,6 @@
 import Link from "next/link";
 import React, { FormEvent, useRef } from "react";
 import { Button, InputBox } from "../components";
-import { Backend_URL } from "@/lib/Constants";
 import { publicRequest } from "@/lib/api";
 import { useToast } from "@/hooks/use-toast";
 

@@ -11,6 +11,18 @@ export const calculateResponsiveScale = (axis: string) => {
   return (currentAxis[0] / currentAxis[1]) * currentAxis[2];
 };
 
+export const getTimeOfDayGreeting = () => {
+  const currentHour = new Date().getHours();
+
+  if (currentHour < 12) {
+    return "Good morning";
+  } else if (currentHour < 18) {
+    return "Good afternoon";
+  } else {
+    return "Good evening";
+  }
+};
+
 export const playClickSound = () => {
   const audio = new Audio("/audio/buttonClick.mp3");
   audio.play();
