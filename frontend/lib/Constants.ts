@@ -1,4 +1,4 @@
-export const Backend_URL = "http://localhost:8000"
+export const Backend_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000"
 
 export const WINBACK_CORE_VALUES = [
     {
