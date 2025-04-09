@@ -2,7 +2,10 @@ import LeftSidebar from "./components/LeftSidebar";
 import Topbar from "./components/Topbar";
 import { redirect } from "next/navigation";
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
+import { Backend_URL } from "@/lib/Constants";
+import { NextAuthOptions } from "next-auth";
+import { JWT } from "next-auth/jwt";
+import CredentialsProvider from "next-auth/providers/credentials";
 // import { authOptions } from "../api/auth/[...nextauth]/route";
 
 export default async function RootLayout({
@@ -10,6 +13,64 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  ////////////////////
+  async function refreshToken(token: JWT): Promise<JWT> {
+    const res = await fetch(Backend_URL + "/auth/refresh", {
+      method: "POST",
+      headers: {
+        authorization: `Refresh ${token.backendTokens.refreshToken}`,
+      },
+    });
+
+    const response = await res.json();
+
+    return {
+      ...token,
+      backendTokens: response,
+    };
+  }
+
+  const authOptions: NextAuthOptions = {
+    providers: [
+      CredentialsProvider({
+        name: "Credentials",
+        credentials: {
+          email: { label: "Email", type: "email", placeholder: "johndoe@gmail.com" },
+          password: { label: "Password", type: "password" },
+        },
+        async authorize(credentials, req) {
+          if (!credentials?.email || !credentials?.password) return null;
+          const { email, password } = credentials;
+          const res = await fetch(Backend_URL + "/auth/login", {
+            method: "POST",
+            body: JSON.stringify({ email, password }),
+            headers: { "Content-Type": "application/json" },
+          });
+
+          if (res.status === 401) return null;
+          const user = await res.json();
+          return user;
+        },
+      }),
+    ],
+
+    callbacks: {
+      async jwt({ token, user }) {
+        if (user) return { ...token, ...user };
+        if (new Date().getTime() < token.backendTokens.expiresIn) return token;
+        return await refreshToken(token);
+      },
+
+      async session({ session, token }) {
+        session.user = token.user;
+        session.backendTokens = token.backendTokens;
+        return session;
+      },
+    },
+    secret: process.env.NEXTAUTH_SECRET,
+  };
+
+  ////////////////////
   const session = await getServerSession(authOptions);
 
   // Check if the user is authenticated
