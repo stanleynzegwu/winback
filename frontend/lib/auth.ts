@@ -1,7 +1,6 @@
 import { Backend_URL } from "@/lib/Constants";
 import { NextAuthOptions } from "next-auth";
 import { JWT } from "next-auth/jwt";
-import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
 async function refreshToken(token: JWT): Promise<JWT> {
@@ -25,7 +24,7 @@ export const authOptions: NextAuthOptions = {
         CredentialsProvider({
             name:"Credentials",
             credentials: {
-                email: { label: "Email", type: "email", placeholder: "jonhdoe@gmail.com" },
+                email: { label: "Email", type: "email", placeholder: "johndoe@gmail.com" },
                 password: { label: "Password", type: "password" }
             },
             async authorize(credentials, req) {
