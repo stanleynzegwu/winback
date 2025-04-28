@@ -12,7 +12,7 @@ const data = [
   { icon: Users, name: "users", navigationPath: "users" },
   { icon: Megaphone, name: "campaign", navigationPath: "campaign" },
   { icon: LayoutDashboard, name: "media-hub", navigationPath: "media-hub" },
-  { icon: LayoutDashboard, name: "account", navigationPath: "account" },
+  // { icon: LayoutDashboard, name: "account", navigationPath: "account" },
 ];
 
 const navIcon = (

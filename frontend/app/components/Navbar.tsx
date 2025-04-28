@@ -12,21 +12,15 @@ import { useSession } from "next-auth/react";
 
 function Navbar() {
   const { data: session } = useSession();
-  // const isAdmin = session?.user.role === "admin";
-  const isAdmin = true;
+  const isAdmin = session?.user.role === "admin";
 
   const [isopen, setisopen] = useState(false);
 
-  // const dashboardVisible = (item: string, isAdmin: boolean) => {
-  //   if (item !== "dashboard") return true;
-
-  //   return isAdmin;
-  // };
   const dashboardVisible = (item: string) => {
     if (item !== "dashboard") return true;
 
-    // Show dashboard only in development mode
-    return process.env.NODE_ENV === "development";
+    // Show dashboard only in development mode OR the use isAdmin
+    return process.env.NODE_ENV === "development" || isAdmin;
   };
 
   return (

@@ -6,6 +6,7 @@ import { Backend_URL } from "@/lib/Constants";
 import { NextAuthOptions } from "next-auth";
 import { JWT } from "next-auth/jwt";
 import CredentialsProvider from "next-auth/providers/credentials";
+import DashboardDataFetcher from "./components/DashboardDataFetcher";
 // import { authOptions } from "../api/auth/[...nextauth]/route";
 
 export default async function RootLayout({
@@ -93,6 +94,7 @@ export default async function RootLayout({
       <LeftSidebar />
       {/* rightSidebar */}
       <div className="w-full max-h-screen min-h-screen overflow-x-hidden overflow-y-auto relative md:p-4 ">
+        <DashboardDataFetcher />
         {children}
       </div>
     </div>

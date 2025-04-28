@@ -19,35 +19,6 @@ export default function Dashboard() {
   const pathname = usePathname();
   const dispatch = useDispatch();
 
-  // Get Redux state
-  const { fetchedData, campaigns, donations } = useSelector((state: RootState) => state.dashboard);
-
-  // Fetch data on first load
-  useEffect(() => {
-    // if (session) {
-    if (!fetchedData) {
-      const fetchAboutData = async () => {
-        try {
-          const campaignResponse = await publicRequest.get("/campaign");
-          if (campaignResponse.status === 200) {
-            dispatch(
-              setDashboardData({
-                campaigns: campaignResponse.data.campaigns,
-                donations: campaignResponse.data.donations,
-              }) //later put donation data hee rathr than campaign
-            );
-            dispatch(setFetchedData(true));
-          }
-        } catch (error) {
-          console.error("Error fetching data:", error);
-        }
-      };
-
-      fetchAboutData();
-    }
-    // }
-  }, [fetchedData, dispatch]);
-
   // // If the user is loading or not authenticated, redirect them to the sign-in page
   // if (status === "loading") {
   //   return <div>Loading...</div>;
