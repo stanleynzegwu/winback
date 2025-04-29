@@ -40,7 +40,7 @@ function Navbar() {
               className="bg-cover object-cover transition-all duration-500 ease-in-out w-14 h-14 cursor-pointer"
             />
           </Link>
-          <HamburgerIcon isopen={isopen} setisopen={setisopen} classname={" md:hidden"} />
+          <HamburgerIcon isopen={isopen} setisopen={setisopen} classname={"md:hidden"} />
           <ul className="hidden md:flex gap-14">
             {["about", "FAQ", "contact", "projects", "dashboard"].map((item, index) => (
               <li
@@ -65,7 +65,7 @@ function Navbar() {
         >
           {["about", "FAQ", "contact", "projects", "dashboard"].map((item, index) => (
             <li
-              className={`inline-block capitalize font-medium hover:text-accentColor-light transition-all duration-500 ease-in-out ${
+              className={`inline-block capitalize font-medium hover:text-purple-400 transition-all duration-500 ease-in-out ${
                 dashboardVisible(item) ? "visible" : "hidden"
               }`}
               key={index}
@@ -75,6 +75,7 @@ function Navbar() {
               </Link>
             </li>
           ))}
+          <SignInButton />
         </div>
       </nav>
     </Headroom>

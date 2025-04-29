@@ -36,7 +36,7 @@ function Topbar() {
               className="bg-cover object-cover transition-all duration-500 ease-in-out w-14 h-14 cursor-pointer"
             />
           </Link>
-          <HamburgerIcon isopen={isopen} setisopen={setisopen} classname={"play-sound md:hidden"} />
+          <HamburgerIcon isopen={isopen} setisopen={setisopen} classname={"md:hidden bg-black"} />
         </div>
         {/* Mobile */}
         <div
@@ -44,12 +44,13 @@ function Topbar() {
             isopen ? "visible md:hidden" : "hidden"
           }`}
         >
-          {["about", "FAQ", "contact", "dashboard"].map((item, index) => (
+          {["home", "users", "campaign", "media-hub"].map((item, index) => (
             <li
               className={`inline-block capitalize font-medium hover:text-accentColor-light transition-all duration-500 ease-in-out `}
+              onClick={() => setisopen(false)}
               key={index}
             >
-              <Link href={`/${item}`} className="play-sound">
+              <Link href={`/dashboard/${item === "home" ? "" : item}`} className="play-sound">
                 {item}
               </Link>
             </li>

@@ -44,8 +44,8 @@ const SignInButton = () => {
 
   if (session && session.user)
     return (
-      <div className="flex gap-4 ml-auto">
-        <p className="text-sky-600">{session.user.username}</p>
+      <div className="flex gap-4 ml-auto max-md:w-full ">
+        <p className="text-sky-600 hidden md:flex uppercase">{session.user.username}</p>
         <Link href={"/api/auth/signout"} className="flex gap-4 ml-auto text-red-600">
           Sign Out
         </Link>

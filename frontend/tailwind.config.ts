@@ -71,7 +71,33 @@ const config: Config = {
   				'3': 'hsl(var(--chart-3))',
   				'4': 'hsl(var(--chart-4))',
   				'5': 'hsl(var(--chart-5))'
-  			}
+  			},
+			violet: {
+				50: "#fdf2ff",
+				100: "#fbe5ff",
+				200: "#f6c9ff",
+				300: "#f39fff",
+				400: "#ee67ff",
+				500: "#df2eff",
+				600: "#c70dec",
+				700: "#ad07c9",
+				800: "#8c08a0",
+				900: "#750d82",
+				950: "#4f0059",
+			},
+			purple: {
+				50: "#f4f3ff",
+				100: "#ebeafd",
+				200: "#dad7fd",
+				300: "#bfb8fa",
+				400: "#9e8ff6",
+				500: "#7e62f0",
+				600: "#6335e5",
+				700: "#5c2ed3",
+				800: "#4d26b1",
+				900: "#412191",
+				950: "#271362",
+			},
   		},
   		blur: {
   			'4xl': '70px',
@@ -86,7 +112,7 @@ const config: Config = {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',
   			sm: 'calc(var(--radius) - 4px)'
-  		}
+  		},
   	}
   },
   plugins: [require("tailwindcss-animate")],

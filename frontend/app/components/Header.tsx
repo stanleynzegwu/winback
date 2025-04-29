@@ -77,10 +77,7 @@ export default function Header() {
         {/* <button className="play-sound w-28 rounded-xl bg-accentColor-light text-black p-2">
           Donate
         </button> */}
-        <Link
-          href="/donate"
-          className="w-28 rounded-xl bg-accentColor-light text-black p-2 text-center"
-        >
+        <Link href="/donate" className="w-28 rounded-xl bg-purple-400 text-black p-2 text-center">
           Donate
         </Link>
       </div>
