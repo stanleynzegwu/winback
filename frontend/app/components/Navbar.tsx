@@ -27,8 +27,8 @@ function Navbar() {
     <Headroom className="relative z-50">
       <nav
         className={`glassmorphism flex flex-col px-10 w-[90%] mx-auto rounded-b-3xl bg-white/30 bg-opacity-20 text-white z-50 ${
-          isopen ? "max-md:h-96" : "h-16"
-        }`}
+          isopen ? "max-md:h-96 absolute top-0 translate-x-1/2 right-1/2" : "h-16"
+        } `}
       >
         <div className={`w-full flex justify-between items-center`}>
           <Link href="/">
@@ -59,13 +59,13 @@ function Navbar() {
         </div>
         {/* Mobile */}
         <div
-          className={`flex flex-col items-center justify-between flex-auto py-10 ${
+          className={`flex flex-col items-start justify-between flex-auto py-10 ${
             isopen ? "visible md:hidden" : "hidden"
           }`}
         >
           {["about", "FAQ", "contact", "projects", "dashboard"].map((item, index) => (
             <li
-              className={`inline-block capitalize font-medium hover:text-purple-400 transition-all duration-500 ease-in-out ${
+              className={`inline-block capitalize font-medium hover:text-buttonColor-light transition-all duration-500 ease-in-out ${
                 dashboardVisible(item) ? "visible" : "hidden"
               }`}
               key={index}

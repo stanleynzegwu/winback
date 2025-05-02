@@ -47,8 +47,10 @@ export class UsersService {
 
 
   getUsers() {
-    const users = this.userModel.find()
-    return users
+    return this.userModel    
+    .find()
+    .select('-password') // Exclude the password field
+    .sort({ createdAt: -1 });
   }
 
   // getUserById(id: string){

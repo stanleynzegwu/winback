@@ -72,6 +72,11 @@ const config: Config = {
   				'4': 'hsl(var(--chart-4))',
   				'5': 'hsl(var(--chart-5))'
   			},
+			buttonColor: {
+				light: "#9e8ff6",
+				DEFAULT: "#7e62f0",
+				dark: "#6335e5",
+			},
 			violet: {
 				50: "#fdf2ff",
 				100: "#fbe5ff",

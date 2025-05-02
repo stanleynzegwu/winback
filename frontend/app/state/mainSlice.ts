@@ -2,7 +2,7 @@ import { CampaignFormState } from "@/lib/types";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface fetchedGeneralDataObjState {
-    mediaHubData: {mediaImages: string[]}[];
+    mediaHubData: {mediaImages: string[],_id: string}[];
     campaignData: {
         campaignImages:string[];
         name:string;
@@ -40,8 +40,11 @@ const mainSlice = createSlice({
     updateCampaignData: (state, action: PayloadAction<fetchedGeneralDataObjState["campaignData"]>) => {
       state.fetchedGeneralDataObj.campaignData = action.payload;
     },
+    updateMediaHubData: (state, action: PayloadAction<fetchedGeneralDataObjState["mediaHubData"]>) => {
+      state.fetchedGeneralDataObj.mediaHubData = action.payload;
+    },
   },
 });
 
-export const { sethasFetchedGeneralData, setGeneralData, updateCampaignData } = mainSlice.actions;
+export const { sethasFetchedGeneralData, setGeneralData, updateCampaignData, updateMediaHubData } = mainSlice.actions;
 export default mainSlice.reducer;

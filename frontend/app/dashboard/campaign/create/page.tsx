@@ -98,6 +98,28 @@ const CreateCampaign = () => {
     e.preventDefault();
 
     setLoading(true);
+    let localError = "";
+    // handle Empty input fields
+    if (!formState.name) {
+      localError = "Add campaign name";
+    } else if (!formState.description) {
+      localError = "Add campaign description";
+    } else if (!formState.date) {
+      localError = "Add campaign date";
+    } else if (!formState.campaignImages.length) {
+      localError = "No image selected; Upload an image/images";
+    }
+
+    if (localError) {
+      toast({
+        title: "Empty Field",
+        description: localError,
+        variant: "destructive",
+      });
+      setLoading(false);
+      return;
+    }
+
     try {
       // Upload the files from formState.campaignImages (which contains File objects)
       const campaignImgUrls = await uploadMultipleFilesToFirebase(
@@ -118,6 +140,7 @@ const CreateCampaign = () => {
         toast({
           title: "Upload Successful",
           description: "Your Campaign was created successfully!",
+          variant: "success",
         });
         // clear the form after submission
         setPreviews([]);
@@ -130,7 +153,12 @@ const CreateCampaign = () => {
         setLoading(false);
       }
     } catch (error) {
-      console.error("Error uploading images:", error);
+      toast({
+        title: "Error",
+        description: `${error}`,
+        variant: "destructive",
+      });
+      process.env.NODE_ENV === "development" && console.error("Error uploading images:", error);
       setLoading(false);
     }
   };

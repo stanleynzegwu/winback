@@ -29,11 +29,11 @@ export class MediaHubService {
     return `This action returns a #${id} mediaHub`;
   }
 
-  update(id: number, updateMediaHubDto: UpdateMediaHubDto) {
-    return `This action updates a #${id} mediaHub`;
+  update(id: string,  updateMediaHubDto:  UpdateMediaHubDto) {
+    return  this.mediaHubModel.findByIdAndUpdate(id,updateMediaHubDto,{ new: true })
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} mediaHub`;
+  remove(id: string) {
+    return this.mediaHubModel.findByIdAndDelete(id)
   }
 }

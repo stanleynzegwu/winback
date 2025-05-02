@@ -40,13 +40,13 @@ function Topbar() {
         </div>
         {/* Mobile */}
         <div
-          className={`flex flex-col items-center justify-between flex-auto py-10 ${
+          className={`flex flex-col items-start justify-between flex-auto py-10 ${
             isopen ? "visible md:hidden" : "hidden"
           }`}
         >
           {["home", "users", "campaign", "media-hub"].map((item, index) => (
             <li
-              className={`inline-block capitalize font-medium hover:text-accentColor-light transition-all duration-500 ease-in-out `}
+              className={`inline-block capitalize font-medium hover:text-buttonColor-dark transition-all duration-500 ease-in-out `}
               onClick={() => setisopen(false)}
               key={index}
             >

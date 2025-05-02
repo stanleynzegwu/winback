@@ -78,14 +78,16 @@ export default function Campaign() {
           toast({
             title: "Delete Successful",
             description: "Your Campaign was deleted successfully!",
+            variant: "success",
           });
         }
       } catch (error) {
         toast({
           title: "Error",
           description: `${error}`,
+          variant: "destructive",
         });
-        console.error("Error deleting Images:", error);
+        process.env.NODE_ENV === "development" && console.error("Error deleting Images:", error);
       }
     }
   };

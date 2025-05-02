@@ -24,11 +24,11 @@ export class MediaHubController {
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateMediaHubDto: UpdateMediaHubDto) {
-    return this.mediaHubService.update(+id, updateMediaHubDto);
+    return this.mediaHubService.update(id, updateMediaHubDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.mediaHubService.remove(+id);
+    return this.mediaHubService.remove(id);
   }
 }
