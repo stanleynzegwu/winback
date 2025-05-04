@@ -91,7 +91,7 @@ function GallarySection() {
       <div className="lg:h-screen lg:sticky top-0 p-2 rounded">
         <div
           id="parallax-container"
-          className="rounded-3xl flex flex-col lg:flex-row h-full max-lg:p-8 overflow-hidden bg-white"
+          className="rounded-3xl flex flex-col lg:flex-row h-full p-4 sm:p-8 overflow-hidden bg-white"
         >
           <div className="flex flex-col gap-4 justify-between lg:p-8 w-full lg:min-w-[500px] lg:w-[42%]">
             <h2 className="text-center">Gallery</h2>

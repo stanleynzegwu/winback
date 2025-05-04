@@ -24,6 +24,7 @@ import { publicRequest } from "@/lib/api";
 import { updateCampaignData } from "@/app/state/mainSlice";
 import { deleteFileFromFirebase } from "@/lib/firebase";
 import { useEffect, useState } from "react";
+import DialogBox from "@/app/components/DialogBox";
 
 const DATA = [
   {
@@ -113,14 +114,33 @@ export default function Campaign() {
               <DropdownMenuLabel>Actions</DropdownMenuLabel>
               <DropdownMenuSeparator />
               <DropdownMenuItem className="pointer">Edit</DropdownMenuItem>
-              <DropdownMenuItem
-                onClick={(e) => {
-                  e.stopPropagation();
+
+              <DialogBox
+                func={(e) => {
+                  e?.stopPropagation();
                   handleDelete(row.original._id);
                 }}
+                confirmMessage={
+                  "This action will permanently delete the campaign. This cannot be undone."
+                }
               >
-                Delete
-              </DropdownMenuItem>
+                {/* <DropdownMenuItem
+                // onClick={(e) => {
+                //   e.stopPropagation();
+                //   handleDelete(row.original._id);
+                // }}
+                > */}
+                {/* Delete
+                </DropdownMenuItem> */}
+                <button
+                  className="w-full text-left px-2 py-1.5 text-sm hover:bg-accent hover:text-accent-foreground rounded-sm"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                  }}
+                >
+                  Delete
+                </button>
+              </DialogBox>
             </DropdownMenuContent>
           </DropdownMenu>
         );

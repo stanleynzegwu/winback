@@ -14,7 +14,7 @@ import { ReactNode } from "react";
 
 interface DialogBoxProps {
   children: ReactNode;
-  func: () => void;
+  func: (e?: React.MouseEvent<HTMLButtonElement>) => void;
   confirmMessage: string;
 }
 const DialogBox = ({ children, func, confirmMessage }: DialogBoxProps) => {
@@ -27,8 +27,9 @@ const DialogBox = ({ children, func, confirmMessage }: DialogBoxProps) => {
           <AlertDialogDescription>{confirmMessage}</AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction onClick={func}>Delete</AlertDialogAction>
+          <AlertDialogCancel onClick={(e) => e?.stopPropagation()}>Cancel</AlertDialogCancel>
+          {/* <AlertDialogAction onClick={func}>Delete</AlertDialogAction> */}
+          <AlertDialogAction onClick={(e) => func(e)}>Delete</AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
