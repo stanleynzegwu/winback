@@ -22,10 +22,30 @@ export default function FadingImageDisplacement({ hovered = false }) {
     "/images/african-headshot1.png",
   ]);
   const { viewport, size, camera } = useThree();
-  useFrame((_state, delta) => {
+  // useFrame((_state, delta) => {
+  //   // @ts-ignore
+  //   hasIntroCompleted && easing.damp(ref.current, "dispFactor", hovered ? 1 : 0, 0.4, delta);
+  // });
+
+  ///////////////////////
+  const toggleRef = useRef(0);
+  const lastToggleTime = useRef(0);
+  const interval = 20; // seconds
+
+  useFrame((state, delta) => {
+    if (!hasIntroCompleted) return;
+
+    const elapsed = state.clock.getElapsedTime();
+
+    if (elapsed - lastToggleTime.current > interval) {
+      toggleRef.current = toggleRef.current === 1 ? 0 : 1;
+      lastToggleTime.current = elapsed;
+    }
+
     // @ts-ignore
-    hasIntroCompleted && easing.damp(ref.current, "dispFactor", hovered ? 1 : 0, 0.4, delta);
+    easing.damp(ref.current, "dispFactor", toggleRef.current, 0.4, delta);
   });
+  ///////////////////////////
 
   useGSAP(() => {
     const opacify = document.getElementsByClassName("opacify");

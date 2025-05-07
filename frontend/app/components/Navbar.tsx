@@ -30,6 +30,11 @@ function Navbar() {
           isopen ? "max-md:h-96 absolute top-0 translate-x-1/2 right-1/2" : "h-16"
         } `}
       > */}
+      {/* <nav
+        className={` flex flex-col px-6 md:px-10 w-[90%] mx-auto rounded-b-3xl bg-purple-950  text-white z-50 ${
+          isopen ? "max-md:h-96 absolute top-0 translate-x-1/2 right-1/2" : "h-16"
+        } `}
+      > */}
       <nav
         className={` flex flex-col px-6 md:px-10 w-[90%] mx-auto rounded-b-3xl bg-purple-950  text-white z-50 ${
           isopen ? "max-md:h-96 absolute top-0 translate-x-1/2 right-1/2" : "h-16"
@@ -49,7 +54,7 @@ function Navbar() {
           <ul className="hidden md:flex gap-14">
             {["about", "FAQ", "contact", "projects", "dashboard"].map((item, index) => (
               <li
-                className={`capitalize font-medium text-white hover:text-purple-600 transition-all duration-500 ease-in-out ${
+                className={`capitalize font-medium text-white hover:text-purple-400 transition-all duration-500 ease-in-out ${
                   dashboardVisible(item) ? "visible" : "hidden"
                 }`}
                 key={index}
